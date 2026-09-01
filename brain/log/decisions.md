@@ -1,0 +1,9 @@
+# Decisions
+
+*Index only — one line each. Detail goes in `decisions/<year>-Q<n>.md`.*
+
+- 2026-09-01 — Repo is a multi-agent portfolio, not one project per agent. Folder holds many; brain tracks the portfolio.
+- 2026-09-01 — Public, MIT. Purpose is showcasing evolution, so knowledge files are generalised and carry nothing personal.
+- 2026-09-01 — Ship two packagings (Claude Code skill + paste-in prompt) from one source. `SKILL.md` references `system-prompt.md` rather than copying it, to prevent silent drift.
+- 2026-09-01 — Agent 1 is prompt-economist. Chosen over a computer-control agent, which was blocked: computer-use caps terminals and IDEs at click-tier, so it cannot answer Claude Code's keyboard-driven permission prompts.
+- 2026-09-01 — Persona is deliberately blunt. A padding agent cannot credibly teach concision.
