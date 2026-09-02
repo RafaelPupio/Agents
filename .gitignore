@@ -5,5 +5,5 @@ logs/
 node_modules/
 .env
 
-# generated skill install (source of truth is prompt-economist/)
+# generated skill install (source of truth is ecoprompt/)
 .claude/skills/

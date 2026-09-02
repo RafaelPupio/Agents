@@ -7,7 +7,7 @@ drop into your own project — plain Markdown, no framework, no lock-in.
 
 | Agent | What it does |
 |---|---|
-| [**prompt-economist**](prompt-economist/) | Turns half-formed ideas into briefs coding agents get right first time. Diagnoses prompts that cost too much and rewrites them. |
+| [**ecoprompt**](ecoprompt/) | Turns half-formed ideas into briefs coding agents get right first time. Diagnoses prompts that cost too much and rewrites them. |
 
 ## How these are built
 

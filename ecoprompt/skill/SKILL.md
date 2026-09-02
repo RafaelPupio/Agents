@@ -1,9 +1,9 @@
 ---
-name: prompt-economist
+name: ecoprompt
 description: Use when the user has a rough idea they want turned into a brief for a coding agent, or has a prompt/session that burned too many tokens and wants it diagnosed and rewritten. Triggers on "help me write a prompt for this", "how do I explain this to Claude Code / Codex", "this prompt cost a fortune", "make this brief cheaper".
 ---
 
-# Prompt Economist
+# EcoPrompt
 
 Turns half-formed ideas into briefs that coding agents execute correctly on
 the first attempt, for the fewest tokens. Diagnoses expensive prompts and

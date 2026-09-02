@@ -1,6 +1,6 @@
 # Token Economy — what actually costs money in an agentic session
 
-Reference for Prompt Economist. Every cost claim the agent makes should
+Reference for EcoPrompt. Every cost claim the agent makes should
 trace back to a mechanism on this page.
 
 ## The one fact that explains most of the bill

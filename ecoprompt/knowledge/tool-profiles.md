@@ -1,6 +1,6 @@
 # Tool Profiles — what each target already knows
 
-Reference for Prompt Economist. The same idea needs a different brief
+Reference for EcoPrompt. The same idea needs a different brief
 depending on what runs it. Choosing wrong is one of the largest sources of
 waste, in both directions: pasting files into a tool that can read them, and
 asking repo questions of a tool that has no repo.

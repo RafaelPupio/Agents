@@ -6,13 +6,13 @@
 
 Repo scaffolded as a public portfolio of reusable agent definitions.
 
-**Agent 1 — prompt-economist: built, Diagnose branch tested, Compose branch
+**Agent 1 — ecoprompt: built, Diagnose branch tested, Compose branch
 untested.**
 
 Complete: `system-prompt.md`, three knowledge files, `skill/SKILL.md`, agent
 README with install for three platforms and four named customisation levers.
-Installed locally at `.claude/skills/prompt-economist/` (gitignored — it is a
-generated copy, source of truth stays in `prompt-economist/`).
+Installed locally at `.claude/skills/ecoprompt/` (gitignored — it is a
+generated copy, source of truth stays in `ecoprompt/`).
 
 **Test result.** Ran Diagnose against this session's own opening prompt.
 Branch works. Found and fixed two defects: no handling for a user who has not

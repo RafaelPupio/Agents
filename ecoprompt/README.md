@@ -1,4 +1,4 @@
-# Prompt Economist
+# EcoPrompt
 
 An agent that turns half-formed ideas into briefs coding agents get right
 first time — and diagnoses prompts that cost too much.
@@ -34,16 +34,16 @@ From the root of the project you want to use it in:
 
 ```bash
 git clone https://github.com/RafaelPupio/Agents /tmp/agents
-mkdir -p .claude/skills/prompt-economist/references
-cp /tmp/agents/prompt-economist/skill/SKILL.md .claude/skills/prompt-economist/
-cp /tmp/agents/prompt-economist/system-prompt.md /tmp/agents/prompt-economist/knowledge/*.md \
-   .claude/skills/prompt-economist/references/
+mkdir -p .claude/skills/ecoprompt/references
+cp /tmp/agents/ecoprompt/skill/SKILL.md .claude/skills/ecoprompt/
+cp /tmp/agents/ecoprompt/system-prompt.md /tmp/agents/ecoprompt/knowledge/*.md \
+   .claude/skills/ecoprompt/references/
 ```
 
 Then in Claude Code:
 
 ```
-/prompt-economist
+/ecoprompt
 ```
 
 ## Install — Option B: Claude Project / Custom GPT

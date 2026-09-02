@@ -9,7 +9,7 @@ README and skill file are distribution, not substance.
 
 ## Personas are functional, not decorative
 
-Pick the persona that makes the agent's *job* work. Prompt Economist is
+Pick the persona that makes the agent's *job* work. EcoPrompt is
 curt because a polite agent pads, and padding is exactly what it exists to
 remove. If a persona choice cannot be justified by the task, it is
 decoration — cut it.

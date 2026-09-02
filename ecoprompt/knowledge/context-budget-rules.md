@@ -1,6 +1,6 @@
 # Context Budget Rules — keeping long sessions alive
 
-Reference for Prompt Economist. These are structural habits, applied to a
+Reference for EcoPrompt. These are structural habits, applied to a
 repository once, that reduce cost on every future session in it. Distinct
 from `token-economy.md`, which covers a single prompt.
 
