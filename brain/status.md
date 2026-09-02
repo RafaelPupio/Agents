@@ -2,26 +2,26 @@
 
 *Present tense only. Supersede, never stack — old blocks go to `log/status-archive.md`.*
 
-## Now — 2026-09-01
+## Now — 2026-09-02
 
-Repo scaffolded as a public portfolio of reusable agent definitions.
+Public portfolio of reusable agent definitions, live at
+`github.com/RafaelPupio/Agents`. MIT.
 
-**Agent 1 — ecoprompt: built, Diagnose branch tested, Compose branch
-untested.**
+**Agent 1 — EcoPrompt: shipped. Diagnose tested, Compose untested.**
 
-Complete: `system-prompt.md`, three knowledge files, `skill/SKILL.md`, agent
-README with install for three platforms and four named customisation levers.
-Installed locally at `.claude/skills/ecoprompt/` (gitignored — it is a
-generated copy, source of truth stays in `ecoprompt/`).
+Complete: `system-prompt.md`, three knowledge files, `skill/SKILL.md`,
+tested `install.sh`, README with three install routes and four named
+customisation levers.
 
-**Test result.** Ran Diagnose against this session's own opening prompt.
-Branch works. Found and fixed two defects: no handling for a user who has not
-settled on an idea, and no `Audience` field despite audience being the single
-most costly omission in the case under test.
+**Verified.** Install path exercised end to end from the published URL —
+clone, run `install.sh`, five files land with real content and valid skill
+frontmatter. Privacy sweep clean on every commit.
 
-**Next action:** test the Compose branch against a real unwritten task. That
-is the half of the agent no evidence covers yet.
+**Test evidence.** Diagnose branch run against a real session transcript;
+found and fixed two defects (no handling for an unchosen idea, no `Audience`
+field). Compose branch has no evidence behind it at all.
 
-**Not done:** GitHub repo not created. Both READMEs hard-code
-`github.com/RafaelPupio/Agents`, so the repo name must match or they need
-editing first.
+**Next action:** test Compose against a real, sloppily-described task. It is
+the only remaining item that can still change the product.
+
+**Then:** agent 2. Topic and audience not yet chosen.
