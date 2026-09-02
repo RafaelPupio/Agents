@@ -10,7 +10,8 @@ self-contained folder that someone can clone into their own project.
 ├── README.md          purpose · install (both packagings) · customisation
 ├── system-prompt.md   canonical instructions, single source of truth
 ├── knowledge/         reference files the agent reasons from
-└── skill/SKILL.md     Claude Code packaging; points at references, no copy
+├── skill/SKILL.md     Claude Code packaging; points at references, no copy
+└── install.sh         copies the skill into a target project
 ```
 
 Never duplicate instruction text across `system-prompt.md` and `SKILL.md`.

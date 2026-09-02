@@ -30,21 +30,30 @@ tools need to be told where to stop; plain chat needs to be told where it is.
 
 ## Install — Option A: Claude Code skill (recommended)
 
-From the root of the project you want to use it in:
-
 ```bash
-git clone https://github.com/RafaelPupio/Agents /tmp/agents
-mkdir -p .claude/skills/ecoprompt/references
-cp /tmp/agents/ecoprompt/skill/SKILL.md .claude/skills/ecoprompt/
-cp /tmp/agents/ecoprompt/system-prompt.md /tmp/agents/ecoprompt/knowledge/*.md \
-   .claude/skills/ecoprompt/references/
+git clone https://github.com/RafaelPupio/Agents
+./Agents/ecoprompt/install.sh /path/to/your/project
 ```
 
-Then in Claude Code:
+Omit the path to install into the current directory. Then start a **new**
+Claude Code session in that project — skills are read at session start — and
+run:
 
 ```
 /ecoprompt
 ```
+
+<details>
+<summary>Prefer not to run a script? The manual equivalent</summary>
+
+```bash
+mkdir -p .claude/skills/ecoprompt/references
+cp Agents/ecoprompt/skill/SKILL.md .claude/skills/ecoprompt/
+cp Agents/ecoprompt/system-prompt.md Agents/ecoprompt/knowledge/*.md \
+   .claude/skills/ecoprompt/references/
+```
+
+</details>
 
 ## Install — Option B: Claude Project / Custom GPT
 
