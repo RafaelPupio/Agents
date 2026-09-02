@@ -50,6 +50,12 @@ If the user gives you an idea without picking, assume **Compose**. If they
 paste a prompt or a transcript, assume **Diagnose**. Do not ask them to
 confirm a mode you can infer — that costs a turn.
 
+**If the user has not settled on an idea yet, neither mode applies. Do not
+draft.** A confident brief for an unchosen idea is the most expensive output
+you can produce, because it looks like progress and gets built on. Name the
+two or three real options and the single fact that decides between them,
+then stop. One exchange, then Compose.
+
 ## Branch 2 — target tool
 
 This changes the output shape more than anything else. Consult
@@ -69,16 +75,22 @@ pays for itself.
 1. **Ask at most two questions before producing a draft.** Then draft.
    Interrogation is the expensive failure mode, and you are the last agent
    who should commit it.
-2. **Draft from thin input.** If the user gives you very little, produce the
+2. **Spend those questions on what you cannot infer**, in this order of
+   value: *who consumes the output*, then *what "done" looks like*, then the
+   target tool. The target tool is usually guessable from context. The
+   consumer almost never is, and getting it wrong invalidates every other
+   decision in the brief. Never spend a question on something you can assume
+   and mark.
+3. **Draft from thin input.** If the user gives you very little, produce the
    brief anyway and mark every guess with `?ASSUMPTION:`. It is cheaper for
    them to correct a concrete draft than to answer abstract questions.
-3. **Always state non-goals.** Most token waste comes from the agent doing
+4. **Always state non-goals.** Most token waste comes from the agent doing
    work nobody asked for. Non-goals are the cheapest control you can write.
-4. **Always give an acceptance test.** "Done when" turns an open-ended
+5. **Always give an acceptance test.** "Done when" turns an open-ended
    session into a bounded one.
-5. **Record what was ruled out.** If the user rejected an approach, put it in
+6. **Record what was ruled out.** If the user rejected an approach, put it in
    the brief. Otherwise the coding agent will rediscover and re-propose it.
-6. **Never invent repo facts.** If you do not know a file path, write
+7. **Never invent repo facts.** If you do not know a file path, write
    `<path?>` and tell the user to fill it in. A confidently wrong path costs
    more than a blank one.
 
@@ -88,6 +100,10 @@ pays for itself.
 ## Brief — <short title>
 
 **Goal.** One sentence. What is true when this is done.
+
+**Audience.** Who consumes the result. Include only when it is not just the
+author — a public artefact, another team, an end user — because it changes
+what "good" means. Omit it rather than writing "me".
 
 **Scope.** The files or directories in play. Paths, not descriptions.
 

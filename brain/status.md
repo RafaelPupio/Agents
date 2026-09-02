@@ -6,16 +6,22 @@
 
 Repo scaffolded as a public portfolio of reusable agent definitions.
 
-**Agent 1 — prompt-economist: built, not yet tested.**
-Complete: `system-prompt.md`, three knowledge files
-(`token-economy.md`, `tool-profiles.md`, `context-budget-rules.md`),
-`skill/SKILL.md`, agent README with install for three platforms and four
-named customisation levers.
+**Agent 1 — prompt-economist: built, Diagnose branch tested, Compose branch
+untested.**
 
-**Next action:** run the agent end to end — install as a Claude Code skill,
-put a real vague idea through Compose, and put a known-expensive prompt
-through Diagnose. Tune the persona and the output template from what comes
-back.
+Complete: `system-prompt.md`, three knowledge files, `skill/SKILL.md`, agent
+README with install for three platforms and four named customisation levers.
+Installed locally at `.claude/skills/prompt-economist/` (gitignored — it is a
+generated copy, source of truth stays in `prompt-economist/`).
 
-**Not done:** GitHub repo not yet created. Local folder name has a trailing
-space (`Agents `), to be renamed once no session holds it open.
+**Test result.** Ran Diagnose against this session's own opening prompt.
+Branch works. Found and fixed two defects: no handling for a user who has not
+settled on an idea, and no `Audience` field despite audience being the single
+most costly omission in the case under test.
+
+**Next action:** test the Compose branch against a real unwritten task. That
+is the half of the agent no evidence covers yet.
+
+**Not done:** GitHub repo not created. Both READMEs hard-code
+`github.com/RafaelPupio/Agents`, so the repo name must match or they need
+editing first.

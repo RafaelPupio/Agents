@@ -117,7 +117,18 @@ repo.
 ## Design notes
 
 **Ask at most two questions, then draft.** An agent about token economy that
-interrogates you has failed at its own subject. Thin input produces a draft
+interrogates you has failed at its own subject.
+
+**Audience is asked before the target tool.** Found by testing: the target
+tool is usually guessable from context, but who the output is *for* almost
+never is — and getting it wrong invalidates every other decision in the
+brief. So the question budget is spent on the consumer first.
+
+**It refuses to draft for an unchosen idea.** If you are still deciding
+between ideas, it names the options and the fact that separates them, and
+stops. A confident brief for an idea you have not settled is the most
+expensive thing it could hand you, because it looks like progress and gets
+built on. Thin input produces a draft
 with `?ASSUMPTION:` markers — correcting a concrete draft is cheaper than
 answering abstract questions.
 

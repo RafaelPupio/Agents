@@ -4,3 +4,6 @@ tmp/
 logs/
 node_modules/
 .env
+
+# generated skill install (source of truth is prompt-economist/)
+.claude/skills/
