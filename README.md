@@ -87,6 +87,28 @@ expensive thing it could hand you, because it looks like progress.
 
 ---
 
+## LeaseReviewer
+
+**A lease counsel for Brazilian rental contracts.** Reviews a contract
+clause by clause before you sign, answers questions about it afterwards,
+computes the annual IGP-M or IPCA readjustment with the full twelve-month
+table, and drafts the tenant notice in Portuguese. A small scheduled runner
+emails the landlord two months ahead of every readjustment and renewal.
+
+| Mode | You bring | You get |
+|---|---|---|
+| **Review** | A contract, draft or signed | Findings by severity, each with the article it rests on, and a "change before signing" list |
+| **Consult** | A question about it | An answer that cites the clause and the law |
+| **Readjust** | Index, base month, rent | The twelve values, the factor, the new rent |
+| **Notify** | A readjustment or renewal | A formal letter to the tenant, as a draft for you to send |
+
+**Private build.** The agent and its legal knowledge base sit next to real
+contracts, so they are not published. The showcase page has the design, the
+reasoning, and an example review.
+[See the showcase →](lease-reviewer/)
+
+---
+
 ## How these are built
 
 ```

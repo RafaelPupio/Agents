@@ -12,3 +12,4 @@
 - 2026-09-01 — Local skill install is gitignored. Shipping a generated copy alongside its source is the drift the repo rules exist to prevent.
 - 2026-09-02 — Agent 1 renamed Prompt Economist → EcoPrompt. Folder, skill name, slash command and all prose follow; no alias kept, since nothing external depends on the old name yet.
 - 2026-09-02 — Published public at github.com/RafaelPupio/Agents. Install path verified end to end from the real URL before declaring it done; a broken install is the first thing a visitor hits and fails invisibly for the author.
+- 2026-09-03 — Agent 2 is LeaseReviewer, showcased here as a README only. The full build is private: it lives beside real contracts and is driven by a scheduler, and neither belongs in a public repo. The showcase carries the idea, the shape and an anonymised example, never the prompt or knowledge base.

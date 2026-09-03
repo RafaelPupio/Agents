@@ -2,10 +2,17 @@
 
 *Present tense only. Supersede, never stack — old blocks go to `log/status-archive.md`.*
 
-## Now — 2026-09-02
+## Now — 2026-09-03
 
 Public portfolio of reusable agent definitions, live at
 `github.com/RafaelPupio/Agents`. MIT.
+
+**Agent 2 — LeaseReviewer: showcase only.** A Brazilian lease counsel
+(review, consult, readjust, notify) plus a scheduled reminder runner. The
+full build is private because it sits next to real contracts and needs a
+scheduler. This repo carries `lease-reviewer/README.md` (idea, shape,
+anonymised example) and a section in the root README. Nothing installable
+here, by design.
 
 **Agent 1 — EcoPrompt: shipped. Diagnose tested, Compose untested.**
 
@@ -24,4 +31,5 @@ field). Compose branch has no evidence behind it at all.
 **Next action:** test Compose against a real, sloppily-described task. It is
 the only remaining item that can still change the product.
 
-**Then:** agent 2. Topic and audience not yet chosen.
+**Then:** if LeaseReviewer is ever generalised for publication, it becomes
+a full four-part folder here. That is a separate decision, not planned.
