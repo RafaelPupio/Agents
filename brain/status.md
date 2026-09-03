@@ -28,8 +28,16 @@ frontmatter. Privacy sweep clean on every commit.
 found and fixed two defects (no handling for an unchosen idea, no `Audience`
 field). Compose branch has no evidence behind it at all.
 
+**Discoverability pass done.** Repo has a description, 9 topics and a
+homepage. Root README leads with a before/after rather than a description.
+`MORDOMO` and `rafaelpupio.com` given topics. Profile website field set.
+Repo keeps the name `Agents`; agents inside carry their own product names.
+
 **Next action:** test Compose against a real, sloppily-described task. It is
 the only remaining item that can still change the product.
+
+**Outstanding, manual only:** pin `Agents` on the profile (no API exists),
+set profile location, optionally delete two boilerplate forks.
 
 **Then:** if LeaseReviewer is ever generalised for publication, it becomes
 a full four-part folder here. That is a separate decision, not planned.
