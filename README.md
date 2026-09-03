@@ -102,9 +102,10 @@ emails the landlord two months ahead of every readjustment and renewal.
 | **Readjust** | Index, base month, rent | The twelve values, the factor, the new rent |
 | **Notify** | A readjustment or renewal | A formal letter to the tenant, as a draft for you to send |
 
-**Private build.** The agent and its legal knowledge base sit next to real
-contracts, so they are not published. The showcase page has the design, the
-reasoning, and an example review.
+**Not published, deliberately.** The agent and its legal knowledge base sit
+beside signed contracts and tenant data, so they stay private. Knowing what
+not to publish is part of the work. The showcase page carries the design,
+the reasoning, and an anonymised example review.
 [See the showcase →](lease-reviewer/)
 
 ---

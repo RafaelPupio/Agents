@@ -6,10 +6,12 @@ computes the annual IGP-M or IPCA readjustment, and drafts the notice to
 the tenant. Paired with a small scheduled runner that emails the landlord
 two months before every readjustment and renewal.
 
-**Status: private build.** The full agent, its legal knowledge base, and
-the runner live in a private repository because they sit next to real
-contracts. This page shows the idea and the shape. Nothing here is legal
-advice.
+**Not published, deliberately.** The full agent, its legal knowledge base
+and the scheduled runner live in a private repository. They sit beside
+signed contracts and tenant data — real names, real addresses, real money —
+and that is not something you publish to look productive. What follows is
+the idea, the shape, and an anonymised example: the parts that are safe to
+show and still worth reading. Nothing here is legal advice.
 
 ## What it does
 
