@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# Install EcoPrompt as a Claude Code skill into a target project.
-# Usage: ./install.sh [target-project-dir]   (defaults to the current directory)
+# Install EcoPrompt as a Claude Code skill.
+#   ./install.sh ~                  every project on this machine (recommended)
+#   ./install.sh /path/to/project   that project only
+#   ./install.sh                    the current directory
 set -euo pipefail
 
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -16,5 +18,10 @@ mkdir -p "$DEST/references"
 cp "$SRC/skill/SKILL.md" "$DEST/"
 cp "$SRC/system-prompt.md" "$SRC"/knowledge/*.md "$DEST/references/"
 
-echo "EcoPrompt installed → $DEST"
-echo "Start a new Claude Code session in $TARGET, then run /ecoprompt"
+if [ "$TARGET" = "$HOME" ]; then
+  echo "EcoPrompt installed for every project → $DEST"
+  echo "Start a new Claude Code session anywhere, then run /ecoprompt"
+else
+  echo "EcoPrompt installed → $DEST"
+  echo "Start a new Claude Code session in $TARGET, then run /ecoprompt"
+fi

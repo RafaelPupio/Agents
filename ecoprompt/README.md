@@ -32,12 +32,18 @@ tools need to be told where to stop; plain chat needs to be told where it is.
 
 ```bash
 git clone https://github.com/RafaelPupio/Agents
-./Agents/ecoprompt/install.sh /path/to/your/project
+./Agents/ecoprompt/install.sh ~
 ```
 
-Omit the path to install into the current directory. Then start a **new**
-Claude Code session in that project — skills are read at session start — and
-run:
+Installing to `~` puts it in `~/.claude/skills/`, where Claude Code reads
+user-level skills — **available in every project on the machine, from one
+copy.** No per-repo files, nothing to gitignore, nothing to drift.
+
+Pass a project path instead (`./install.sh /path/to/project`) only when you
+want it committed to that repo so a team shares it.
+
+Then start a **new** Claude Code session — skills are read at session start —
+and run:
 
 ```
 /ecoprompt
