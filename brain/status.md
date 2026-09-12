@@ -2,7 +2,7 @@
 
 *Present tense only. Supersede, never stack — old blocks go to `log/status-archive.md`.*
 
-## Now — 2026-09-03
+## Now — 2026-09-12
 
 Public portfolio of reusable agent definitions, live at
 `github.com/RafaelPupio/Agents`. MIT.
@@ -41,3 +41,9 @@ set profile location, optionally delete two boilerplate forks.
 
 **Then:** if LeaseReviewer is ever generalised for publication, it becomes
 a full four-part folder here. That is a separate decision, not planned.
+
+## Native-tool handoff verification — 2026-09-12
+
+The disposable `test/odysseus-handoff` branch verifies that Odysseus can read
+repository instructions, edit the smoke artifact, run validation, and commit
+through native tool calls. Remote synchronization is the final pending check.
