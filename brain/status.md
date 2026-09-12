@@ -46,4 +46,4 @@ a full four-part folder here. That is a separate decision, not planned.
 
 The disposable `test/odysseus-handoff` branch verifies that Odysseus can read
 repository instructions, edit the smoke artifact, run validation, and commit
-through native tool calls. Remote synchronization is the final pending check.
+through native tool calls. The branch is synchronized with its GitHub remote.
