@@ -1,56 +1,57 @@
-# Agents — repo rules
+# Agents — container rules
 
-A public portfolio of reusable agent definitions. Each agent is a
-self-contained folder that someone can clone into their own project.
+A public portfolio of agent projects. **Each agent folder is its own
+project** — its own `CLAUDE.md`, its own `brain/`, its own release tags.
+This file governs the container, not the agents. Read the agent's own
+`CLAUDE.md` before working inside it.
 
-## Structure — one folder per agent
+## Structure
 
 ```
 <agent-name>/
-├── README.md          purpose · install (both packagings) · customisation
-├── system-prompt.md   canonical instructions, single source of truth
+├── CLAUDE.md          that agent's rules; AGENTS.md symlinks to it
+├── brain/             its INDEX, status, handoff, log/decisions
+├── README.md          purpose · install · customisation levers
+├── system-prompt.md   the product, single source of truth
 ├── knowledge/         reference files the agent reasons from
-├── skill/SKILL.md     Claude Code packaging; points at references, no copy
-└── install.sh         copies the skill into a target project
+├── skill/SKILL.md     Claude Code packaging; references, never copies
+└── install.sh         installs the skill
 ```
 
-**Two kinds of entry.** A **full agent** ships all five parts and installs.
-A **showcase** ships `README.md` only — the idea, the shape, an anonymised
-example — when the real build cannot be published. State which in the
-README's opening lines. Nothing half-published: a folder either installs,
-or it explains why it does not.
+**Two kinds of entry.** A **full agent** ships all of the above and installs.
+A **showcase** ships `CLAUDE.md`, `brain/` and `README.md` only — the idea,
+the shape, an anonymised example — when the real build cannot be published.
+State which in the README's opening lines.
 
-Never duplicate instruction text across `system-prompt.md` and `SKILL.md`.
-`SKILL.md` references the system prompt; it does not restate it. Two copies
-drift, and the drift is silent.
+## Where things are recorded
 
-## Non-negotiables
+Agent work is recorded in **that agent's** `brain/`. The root `brain/` holds
+portfolio decisions only: what this repo is, what gets added, how it is
+published. `rafael.md` stays at the root and is shared — never duplicated
+into an agent.
+
+Never record an agent's work at the root.
+
+## Non-negotiables — every folder
 
 **Public repo — nothing personal, ever.** No home paths, no machine names,
-no other project names, no client work, no keys. This includes `brain/`.
-Check before every commit.
+no other project names, no client work, no keys. Check before every commit.
 
-**Generalised content only.** Knowledge files carry principles, not one
-repo's layout. If a sentence only makes sense on the author's machine, it is
-a bug.
+**Generalised content only.** Principles, not one repo's layout.
 
 **Portable Markdown.** No platform-specific syntax in `system-prompt.md` or
-`knowledge/`. It must paste cleanly into any agent platform.
-
-**Knowledge files stay under 20 KB.** Past that, split by topic. Large files
-get read whole or not at all, and "not at all" is what happens.
+`knowledge/`.
 
 ## Adding an agent
 
-1. Create the folder with the five-part structure above — or a README
-   only, if it is a showcase.
-2. Write `system-prompt.md` first — it is the product. Everything else wraps it.
-3. Give the README explicit **customisation levers**: named sections a user
-   edits, not "adapt the prompt to your needs".
-4. Add a row to the table in the root `README.md`.
-5. Record the decision in `brain/log/decisions.md`.
+1. Create the folder with the structure above, including its own
+   `CLAUDE.md`, `AGENTS.md` symlink and `brain/`.
+2. Write `system-prompt.md` first — it is the product.
+3. Give the README named **customisation levers**, never "adapt as needed".
+4. Add a row to the root `README.md` index.
+5. Record the new agent in the **root** decisions log; everything after that
+   goes in its own brain.
 
-## Finishing a task
+## Releases
 
-Done means `brain/status.md` and `brain/log/decisions.md` reflect what
-changed. A task that changed this repo but not the brain is unfinished.
+Each agent versions independently: `<agent>-vX.Y` annotated tags.

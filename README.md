@@ -112,14 +112,23 @@ the reasoning, and an anonymised example review.
 
 ## How these are built
 
+Each agent folder is **its own project** — its own rules, its own decision
+log, its own version line. One repo so there is one clone and one place to
+look, but nothing inside is a subfolder of anything else.
+
 ```
 <agent-name>/
+├── CLAUDE.md          that agent's rules
+├── brain/             its status, decisions, handoff
 ├── README.md          purpose · install · customisation levers
-├── system-prompt.md   canonical instructions, single source of truth
+├── system-prompt.md   the product, single source of truth
 ├── knowledge/         reference files the agent reasons from
 ├── skill/SKILL.md     Claude Code packaging
-└── install.sh         copies the skill into a target project
+└── install.sh         installs the skill
 ```
+
+Each versions independently — `ecoprompt-v1.0`, `lease-reviewer-v1.0` —
+so you can pull one agent at a known version without tracking the others.
 
 **Portable.** No platform-specific syntax. The same files work as a skill, a
 Project, a Custom GPT, or anything else that accepts instructions and
