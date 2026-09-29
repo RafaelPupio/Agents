@@ -14,6 +14,12 @@ self-contained folder that someone can clone into their own project.
 └── install.sh         copies the skill into a target project
 ```
 
+**Two kinds of entry.** A **full agent** ships all five parts and installs.
+A **showcase** ships `README.md` only — the idea, the shape, an anonymised
+example — when the real build cannot be published. State which in the
+README's opening lines. Nothing half-published: a folder either installs,
+or it explains why it does not.
+
 Never duplicate instruction text across `system-prompt.md` and `SKILL.md`.
 `SKILL.md` references the system prompt; it does not restate it. Two copies
 drift, and the drift is silent.
@@ -36,7 +42,8 @@ get read whole or not at all, and "not at all" is what happens.
 
 ## Adding an agent
 
-1. Create the folder with the four-part structure above.
+1. Create the folder with the five-part structure above — or a README
+   only, if it is a showcase.
 2. Write `system-prompt.md` first — it is the product. Everything else wraps it.
 3. Give the README explicit **customisation levers**: named sections a user
    edits, not "adapt the prompt to your needs".

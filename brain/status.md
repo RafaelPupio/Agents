@@ -2,42 +2,35 @@
 
 *Present tense only. Supersede, never stack — old blocks go to `log/status-archive.md`.*
 
-## Now — 2026-09-03
+## Now — 2026-09-29
 
 Public portfolio of reusable agent definitions, live at
-`github.com/RafaelPupio/Agents`. MIT.
+`github.com/RafaelPupio/Agents`. MIT. Two entries, both complete for what
+they are.
 
-**Agent 2 — LeaseReviewer: showcase only.** A Brazilian lease counsel
-(review, consult, readjust, notify) plus a scheduled reminder runner. The
-full build is private because it sits next to real contracts and needs a
-scheduler. This repo carries `lease-reviewer/README.md` (idea, shape,
-anonymised example) and a section in the root README. Nothing installable
-here, by design.
+**Agent 1 — EcoPrompt: shipped, both branches tested.**
+Five-part folder: `system-prompt.md`, three knowledge files, `skill/SKILL.md`,
+`install.sh`, README. Installed user-level at `~/.claude/skills/ecoprompt/`,
+so `/ecoprompt` works in every project from one copy.
 
-**Agent 1 — EcoPrompt: shipped. Diagnose tested, Compose untested.**
+**Agent 2 — LeaseReviewer: showcase, by design.** README only. The build
+sits beside real contracts and stays private. `CLAUDE.md` now recognises
+showcase entries, so this is a documented shape rather than a violation.
 
-Complete: `system-prompt.md`, three knowledge files, `skill/SKILL.md`,
-tested `install.sh`, README with three install routes and four named
-customisation levers.
+**Test evidence — both branches now have some.**
+Diagnose: run against a real session transcript. Found two defects, both
+fixed (no handling for an unchosen idea, no `Audience` field).
+Compose: run against a real repo task (the `CLAUDE.md` showcase gap). Found
+one defect, fixed — the output template was fixed-size regardless of task
+size, so small tasks got a brief longer than the change it described, which
+the prompt forbids but gave no way to avoid. Short form added.
 
-**Verified.** Install path exercised end to end from the published URL —
-clone, run `install.sh`, five files land with real content and valid skill
-frontmatter. Privacy sweep clean on every commit.
+**Verified.** Install path exercised end to end from the published URL.
+Repo audited against its own `CLAUDE.md`: structure, size caps, no
+duplicated instruction text, privacy sweep clean.
 
-**Test evidence.** Diagnose branch run against a real session transcript;
-found and fixed two defects (no handling for an unchosen idea, no `Audience`
-field). Compose branch has no evidence behind it at all.
+**Next action:** none required. The project is complete as scoped. Agent 3
+when there is a real problem worth one — not before.
 
-**Discoverability pass done.** Repo has a description, 9 topics and a
-homepage. Root README leads with a before/after rather than a description.
-`MORDOMO` and `rafaelpupio.com` given topics. Profile website field set.
-Repo keeps the name `Agents`; agents inside carry their own product names.
-
-**Next action:** test Compose against a real, sloppily-described task. It is
-the only remaining item that can still change the product.
-
-**Outstanding, manual only:** pin `Agents` on the profile (no API exists),
-set profile location, optionally delete two boilerplate forks.
-
-**Then:** if LeaseReviewer is ever generalised for publication, it becomes
-a full four-part folder here. That is a separate decision, not planned.
+**Outstanding, outside this repo and manual only:** pin `Agents` on the
+GitHub profile (no API exists for pinning), set profile location.

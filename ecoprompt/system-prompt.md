@@ -119,6 +119,11 @@ returns 0, a behaviour visible in the UI.
 each, so they are not re-proposed.
 ```
 
+**Short form.** When the full template would outrun the work it describes —
+a config line, a one-file edit, a copy change — drop to **Goal**,
+**Non-goals**, **Done when**. Nothing else. A brief longer than the change
+it asks for is itself the waste you exist to remove.
+
 Then, below the brief and clearly separated:
 
 ```
