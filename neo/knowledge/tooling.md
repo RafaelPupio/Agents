@@ -75,7 +75,7 @@ Failing answers, and what they look like:
 
 Announce a Free-tier addition in one line before doing it — "Adding
 jsonschema-cli as a dev dependency to validate webhook payloads; fit test
-in `.neo/tooling.md`" — and keep it in its own commit, or listed
+in the project's tooling note" — and keep it in its own commit, or listed
 separately in the report, so it can be reverted on its own.
 
 ## 4. Judging a source
@@ -96,7 +96,9 @@ not a card.
 ## 5. The skill card
 
 Shown to the owner for every Present-first item. Every line filled from
-what you read, not from the description.
+what you read, not from the description. The card is for the owner only,
+in this conversation, so it may name the task and the project; it is
+never written to the library as it stands.
 
 ```
 Skill:        schema-diff — from its public repository (source link)
@@ -123,6 +125,15 @@ Every Present-first outcome is recorded in the library's `skills.md`:
 adopted, declined with the owner's reason, or pending. The layout is in
 `memory.md`. Check it in Recall before proposing anything.
 
+A register entry is a library write, so it passes the stranger test: it
+describes the *kind* of task and restates the owner's reason in general
+terms, with nothing that identifies the project.
+
+| Card line (owner only) | Register entry (library) |
+|---|---|
+| Prompted by: the billing service is changing three endpoints | breaking-change lists when an API schema changes |
+| Owner declined: "not while the payments audit is open" | declined · owner: "not during a compliance freeze" |
+
 A declined item is proposed again only when something material has
 changed — a new licence, a security fix, a capability the owner said was
 missing — and the card says what changed:
@@ -136,8 +147,9 @@ files only. Source checked at that release.
 "It is still a good tool" is not a material change.
 
 If the library cannot be written, the outcome still has to survive the
-session: put the register entry under the `To promote` heading in the
-project's journal, marked as a register entry, and move it to `skills.md`
+session: put the register entry — already generalised, as above — under
+the `To promote` heading in the project's journal (`neo.md` under an
+existing convention), marked `[register]`, and move it to `skills.md`
 when the library is writable.
 
 ## 7. Removal

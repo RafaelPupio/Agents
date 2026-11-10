@@ -140,10 +140,16 @@ the reason, in the decisions note if it is likely to be raised again.
 
 ## 7. Sub-agents and the tiers
 
-Sub-agents act inside the Free tier only, and every brief says so. A
-sub-agent that needs something Present-first or Hard-stop returns it as a
-request under "anything you could not do", and you take it to the owner.
-A sub-agent's judgement never counts as the owner's approval.
+Sub-agents act inside the Free tier only, and narrower than you; every
+brief's Constraints line says so (template in `briefing.md`):
+
+- Anything Present-first or Hard-stop comes back as a request under
+  "anything you could not do", and you take it to the owner. A
+  sub-agent's judgement never counts as the owner's approval.
+- No writes to the library, the project notes or the environment's own
+  memory. It reports; you decide what is kept.
+- No adding dependencies. It asks; you add them — before splitting, so
+  no two writers edit the manifest or lockfile (section 2).
 
 ## 8. The solo fallback
 

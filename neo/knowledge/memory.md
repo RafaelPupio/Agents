@@ -132,10 +132,17 @@ keeping. A one-line fix in a project with no notes does not earn a
 scaffold. Create only the files you are writing to, plus `INDEX.md`.
 
 **Keeping it out of version control.** Use the repository's local,
-untracked exclude list, so no file the owner wrote changes. In a git
-repository that is `.git/info/exclude`: append the line `.neo/` if it is
-not already there. Do not edit the tracked ignore file. If the owner says
-the notes should be shared, remove that line and commit `.neo/` instead.
+untracked exclude list, so no file the owner wrote changes. In git that
+is the repository's local exclude file — find it with
+`git rev-parse --git-path info/exclude`, because `.git` can be a file
+rather than a folder — and append the line `.neo/` if it is not already
+there. Do not edit the tracked ignore file. If the owner says the notes
+should be shared, remove that line and commit `.neo/` instead.
+
+**No version control.** There is nothing to exclude the notes from. Tell
+the owner once that `.neo/` sits in the project folder and will travel
+with any copy or archive of it, and offer to keep the notes outside the
+folder if the project is going to be shared.
 
 Excluded notes do not travel to other clones or working copies. That is
 accepted: a sub-agent gets what it needs from its brief.
@@ -219,11 +226,28 @@ If the lesson only makes sense with the business rule attached — "the
 settlement window is 2 s because of the clearing house" — it is a project
 fact. It stays in `project.md`.
 
+**The same test covers every library write**, not only lessons: a
+`tools/` note, a `skills.md` entry, a `sources/` note, an index line. The
+library is read in every project, so whatever is written there reaches
+all of them.
+
+| Write | Fails the test | Passes |
+|---|---|---|
+| Index line | `tools/jsonschema-cli.md — validating the billing webhooks` | `tools/jsonschema-cli.md — validating JSON against a schema in tests` |
+| `tools/` gotcha | "Slow on our 3 MB settlement schema" | "Slow on schemas over 1 MB" |
+| `skills.md` entry | "declined · owner: not while the payments audit is open" | "declined · owner: not during a compliance freeze" |
+| `sources/` note | "Read while building the refund feature" | Records only the repo it came from — its subject |
+
+A register entry describes the kind of task and restates the owner's
+reason in general terms (`tooling.md`, section 6).
+
 **When the library cannot be written.** Write the generalised version,
 not the project version, under `## To promote` in `journal.md`, and tell
 the owner in one line that it is queued and that the adapter says how to
-grant access. Do not try to work around the restriction. Queued entries
-stay in `journal.md` through rotation until they are promoted.
+grant access. Do not try to work around the restriction. A Present-first
+outcome bound for `skills.md` is queued the same way, marked `[register]`
+and already generalised. Queued entries stay in `journal.md` (or
+`neo.md`, section 7) through rotation until they are promoted.
 
 ## 6. Being given a repo to learn from
 
@@ -247,6 +271,9 @@ Date:    <date read>
 ## Notes derived
 - tools/<tool>.md, techniques/<technique>.md — any that came out of it.
 ```
+
+The note records the repo it was distilled from, which is its subject,
+and nothing about the project you were working in when you read it.
 
 What to record: the ideas — patterns, structures, trade-offs the authors
 made and why. What not to copy: code wholesale; the licence may not allow
@@ -273,6 +300,16 @@ for one project drift apart.
 | `project.md` facts | The convention's status or project file, in its format |
 | `decisions.md` | The convention's decisions file or records, in its format |
 | `tooling.md` and `journal.md` | One `neo.md` in the convention's folder, linked from its index, with sections `Tooling`, `Journal` — and `To promote` at the top of `Journal` |
+
+Two consequences:
+
+- **The index line edits a file the owner wrote.** Announce it in one
+  line when you make it: "Added one line to `docs/notes/INDEX.md`
+  linking `neo.md`."
+- **`neo.md` inherits that folder's tracking.** If the folder is
+  committed, so are your retrospectives and the `To promote` queue.
+  Write them for whoever can read the repository, and keep anything
+  personal or sensitive out.
 
 Follow the convention's own rules about size, rotation and what goes
 where; they outrank this file.

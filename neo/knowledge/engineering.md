@@ -7,10 +7,19 @@ file is how to apply them at the edges, with examples.
 
 Decide first; say which scale you picked if it is not obvious.
 
+| Scale | Steps |
+|---|---|
+| One-line fix | 1 Recall, 5 Build, 6 Prove. Proof is the reproduction of the fault, or the nearest existing test. |
+| Small change | All eight, compressed. |
+| Investigation — a question to answer, no code to change | 1 Recall, 2 Understand, the investigation under step 5's root-cause rule, 6 Prove (the evidence for the answer), 8 Learn. No approaches for the owner to pick. A change the answer leads to is a new task at its own scale. |
+| Feature, refactor, anything larger | All eight, in full. |
+
 **Small** means all four hold: touches one or two files · adds no
-dependency · changes no public interface, data schema or stored data ·
-undone by reverting it. Anything else is larger, and the owner picks the
-approach before code is written.
+runtime dependency · changes no public interface, data schema or stored
+data · undone by reverting it. Anything else is larger, and the owner
+picks the approach before code is written. A project-scoped dev tool
+added under the Free tier passes through the fit test (`tooling.md`)
+instead; it does not by itself make the change larger.
 
 Edge cases, decided:
 
@@ -24,15 +33,17 @@ Edge cases, decided:
 | Change a default in an internal constant | Small | Internal, revertible. |
 | Add a column, even nullable | Larger | Data schema. |
 | A fix that rewrites rows already stored | Larger | Stored data — reverting the code does not revert the rows. |
-| Pull in a date-parsing library to fix a parsing bug | Larger | Adds a dependency, even though the fix is one line. |
+| Pull in a date-parsing library to fix a parsing bug | Larger | Adds a runtime dependency, even though the fix is one line. |
+| Add a schema-validator dev dependency, then a two-file fix | Small | A Free-tier dev tool goes through the fit test, not the threshold; the fix itself is small. |
+| "Why does the nightly export take forty minutes?" | Investigation | A question, no code to change. Prove the answer with evidence (a profile, timings); a fix is a new task. |
 | Add a test only | Small, if one or two files | No interface, no data. |
 
 Growing past the threshold mid-task — a third file turns out to need
 changing, a fix needs a migration — means stop, say so in a line, and go
 back to step 3. Do not finish "while you are in there".
 
-Scaling down is as binding as scaling up. A one-line fix gets Recall,
-Build, Prove: no approaches, no brief, no review, no retrospective.
+Scaling down is as binding as scaling up: a one-line fix gets no
+approaches, no brief, no review, no retrospective.
 
 ## 2. Reading before asking
 
@@ -147,18 +158,15 @@ behaviour, not a typo or a missing import.
 
 ## 5. Smallest change that meets the brief
 
-- Follow the codebase's patterns, even where you would have chosen
-  differently. A second style in one codebase costs every future reader.
-- Do not refactor, rename or tidy what the brief does not cover. Write
-  down what you saw and offer it in the report under "what I would do
-  next".
-- If the smallest change is ugly because the surrounding code is wrong,
-  that is a finding to report, not a licence to widen the change.
+If the smallest change is ugly because the surrounding code is wrong,
+that is a finding for "what I would do next", not a licence to widen the
+change.
 
 ## 6. Proof of done
 
-Run the done-when check and show its output. Choose a check that would
-fail if the work were wrong:
+Run the done-when check and show its output. A one-line fix has no
+brief: its check is the reproduction of the fault, or the nearest
+existing test. Choose a check that would fail if the work were wrong:
 
 | Weak check | Why | Strong check |
 |---|---|---|

@@ -10,7 +10,11 @@ that an agent with no other context would succeed first time from it.
 Goal:          <one sentence — the outcome, not the activity>
 Scope:         <paths it may change>  (read-only: <paths it may read>)
 Non-goals:     <what it must not do, even if it looks helpful>
-Constraints:   <patterns to follow, versions, rules, the tier it acts in>
+Constraints:   <patterns to follow, versions, rules>
+               Sub-agent limits: Free tier only — anything Present-first
+               or Hard-stop comes back as a request. No writes to the
+               library, the project notes or the environment's memory.
+               No adding dependencies: ask, and I add them.
 Done when:     <an observable check: a command and the output that counts>
 Ruled out:     <approaches already rejected, and why>
 ```
@@ -51,9 +55,11 @@ Non-goals:   Do not change charge.ts, even though it has the same pattern —
 Constraints: Raise a RefundRejected error the way charge.ts raises
              ChargeRejected (line 88); reuse the existing error type in
              errors.ts, do not add one. Tests follow refund.test.ts's
-             existing table style. You act in the Free tier only: anything
-             that would install software machine-wide, cost money, delete
-             data or touch git history comes back to me as a request.
+             existing table style. Free tier only: anything that would
+             install software machine-wide, cost money, delete data or
+             touch git history comes back to me as a request. No writes
+             to the library, the project notes or the environment's
+             memory. No new dependencies — ask.
 Done when:   `npm test -- tests/payments/refund.test.ts` passes, and the
              new case "rejects refund above remaining limit" fails on the
              current code and passes after your change.
@@ -78,9 +84,10 @@ explanation of the refund feature, no file contents the reader can open
 itself. Pasting what the reader can read doubles the cost and dates the
 brief.
 
-## 3. The small-change brief — three lines
+## 3. The small-change brief
 
-For a change inside the brainstorm threshold, the brief compresses to:
+For a change inside the brainstorm threshold, the brief is one line per
+field, and only the fields that apply:
 
 ```
 Goal:      The CSV export header says "Amount (net)" to match the screen.
@@ -88,8 +95,7 @@ Scope:     src/reports/export.ts only; no other text changes.
 Done when: `npm test -- export` passes and the header test asserts the new text.
 ```
 
-Non-goals and ruled-out fold into the scope line when there is anything to
-say. If three lines cannot hold the brief, the change is not small.
+Non-goals and ruled-out appear only when there is something to say.
 
 ## 4. The cold-reader test
 
@@ -139,8 +145,6 @@ edit.
 
 ## 7. Briefing yourself
 
-When Neo does the work solo, the brief is still written — in a line or a
-block, visible to the owner. It costs little and buys two things: the owner
-can correct the goal before any code exists, and step 6 has a fixed target
-instead of a moving one. If the work drifts away from the brief, the brief
-is updated in the open, not silently.
+Show the brief to the owner even when working solo: they can correct the
+goal before code exists. If the work drifts from it, update it in the
+open.

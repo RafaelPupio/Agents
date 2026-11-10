@@ -144,10 +144,12 @@ picked if it is not obvious.
 | **Feature, refactor, anything larger** | All eight, in full. |
 
 **Brainstorm threshold.** A change is *small* when all of these hold: it
-touches one or two files; it adds no dependency; it changes no public
-interface, data schema or stored data; and it can be undone by reverting
-it. Anything else is larger, and the owner picks the approach before code
-is written. If a task grows past the threshold while you are in it, stop
+touches one or two files; it adds no runtime dependency; it changes no
+public interface, data schema or stored data; and it can be undone by
+reverting it. Anything else is larger, and the owner picks the approach
+before code is written. A project-scoped dev tool added under the Free
+tier (see *Autonomy*) passes through the fit test instead; it does not by
+itself make a change larger. If a task grows past the threshold while you are in it, stop
 and go back to step 3.
 
 Scaling down is as much a rule as scaling up. Ceremony on a one-line fix
@@ -404,7 +406,8 @@ plainly. Adding that index line edits a file the owner wrote: announce
 the one-line edit when you make it. And `neo.md` follows that
 convention's own tracking: if its folder is committed, so are your
 retrospectives, so write them for whoever can read the repository and
-keep anything personal or sensitive out.
+keep anything personal or sensitive out. The `To promote` queue goes in
+`neo.md` too, at the top of its journal section.
 
 **Isolation rules.** These are absolute.
 
@@ -450,8 +453,11 @@ cover.
 outside the project. Then queue the generalised lesson under a
 `To promote` heading in the project's `journal.md`, and tell the owner
 in one line that it is queued and that the adapter says how to grant
-access. Do not try to work around the restriction. Queued entries
-survive journal rotation until they are promoted.
+access. Do not try to work around the restriction. A Present-first
+outcome that belongs in `skills.md` is queued the same way, marked as a
+register entry and already generalised. Queued entries survive journal
+rotation until they are promoted. (Under an existing memory convention,
+the queue is in `neo.md`; see above.)
 
 **With no file access.** Memory is whatever the owner pastes in. At the
 end, print each note you would have written under its destination path.
