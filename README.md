@@ -110,6 +110,48 @@ the reasoning, and an anonymised example review.
 
 ---
 
+## Neo
+
+**A senior developer you can hand any codebase or software problem.** It
+brainstorms before it builds, writes briefs a sub-agent with no other context
+can execute, splits work across sub-agents only when that is cheaper, and
+proves work is done by running the check rather than saying "should work".
+
+It also remembers. Two stores, so projects share what was learned about a
+tool but never each other's information: a private library per machine for
+tool and technique knowledge, and a notes folder inside each project.
+
+Neo is **called by name, not always on** — nothing goes into a global
+instruction file, so sessions that do not call it cost nothing.
+
+### Install
+
+```bash
+git clone https://github.com/RafaelPupio/Agents
+./Agents/neo/install.sh claude-code ~
+```
+
+Start a new session, then call it: `/neo` in Claude Code and Hermes, `$neo`
+in Codex. After that you simply talk to it. Claude Code is install-tested,
+with behaviour scenarios pending; Hermes and Codex are untested. Anything
+else: paste `neo/system-prompt.md` as the first message.
+[Full instructions →](neo/)
+
+### What it does
+
+| It does | By |
+|---|---|
+| **Thinks first** | Offering approaches before code on anything bigger than a small change |
+| **Staffs the work** | One self-contained brief per sub-agent, non-overlapping files, cheapest capable model |
+| **Seeks tools** | Adding to the current project on its own; showing a card before adding any skill |
+| **Learns** | Writing generalised lessons to the library, project facts only to that project |
+
+Hand it a repository and it distils the ideas into your private library
+instead of copying the code. Deleting data, force-pushing, publishing and
+spending are confirmed every time.
+
+---
+
 ## How these are built
 
 Each agent folder is **its own project** — its own rules, its own decision
@@ -127,8 +169,11 @@ look, but nothing inside is a subfolder of anything else.
 └── install.sh         installs the skill
 ```
 
-Each versions independently — `ecoprompt-v1.0`, `lease-reviewer-v1.0` —
-so you can pull one agent at a known version without tracking the others.
+Neo adds `adapters/` (one file per harness), `templates/` (empty memory
+skeletons) and `tests/` (the installer test) to that layout.
+
+Each versions independently — `ecoprompt-v1.0`, `lease-reviewer-v1.0`, and
+`neo-v1.0` once it is tagged — so you can pull one agent at a known version without tracking the others.
 
 **Portable.** No platform-specific syntax. The same files work as a skill, a
 Project, a Custom GPT, or anything else that accepts instructions and
@@ -146,7 +191,9 @@ with the next repo.
 Every agent documents named levers you edit — a specific section, table, or
 file — never "adapt the prompt to your needs". For EcoPrompt: persona,
 output template, target tools, and the cost model.
-[See the levers →](ecoprompt/#customising-it)
+[See the levers →](ecoprompt/#customising-it) For Neo: persona, autonomy
+tiers, brainstorm threshold, model routing, memory locations, and harnesses.
+[See the levers →](neo/#customising-it)
 
 ## Licence
 
