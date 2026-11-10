@@ -37,15 +37,17 @@ tooling note, is cheaper than a tool.
 | A project-level config file for a tool | Free | Same. |
 | A one-off script in the project | Free | Same. |
 | A sub-agent role for this task | Free | Same. |
-| A skill | Present first | Persists across projects. |
+| A skill | Present first, as shipped | Persists across projects. |
 | Anything installed machine-wide (a global package, a system binary) | Present first | Persists outside the project folder. |
 | A paid service, an API that needs a key | Present first | Costs money or needs a credential. |
 | A tool or technique note in the library | Neither — Learn | Writing notes is not an install. |
 
-When a case is not in the table, ask which side of the scope line it
-falls on: does it outlive this project, or reach outside its folder? If
-still unclear, present first. A project's own rules about dependencies
-win over the Free tier.
+The prompt's *Autonomy* table decides: anything in its Present-first tier
+gets a card; if the owner has moved an item to another tier there, that
+tier applies, not this table. When a case is in neither, ask which side
+of the scope line it falls on: does it outlive this project, or reach
+outside its folder? If still unclear, present first. A project's own
+rules about dependencies win over the Free tier.
 
 ## 3. The fit test, applied
 

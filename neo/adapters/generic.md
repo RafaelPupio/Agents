@@ -1,5 +1,5 @@
 SKILL_DIR: none (paste-in; nothing is installed)
-INVOKE: paste `system-prompt.md` as the first message
+INVOKE: paste `system-prompt.md` (below its `---`) into the instructions field, paste this file under it, attach the five `knowledge/` files
 
 # Adapter: generic (chat with no tools)
 
@@ -7,7 +7,7 @@ No tools, no files, no sub-agents. Neo works solo and every capability below deg
 
 | Capability | How it is done here |
 |---|---|
-| how Neo is called | Paste `system-prompt.md` at the start of the chat, then your task. |
+| how Neo is called | Paste `system-prompt.md` (below its `---`) into the instructions field, paste this file (`adapters/generic.md`) under it, and attach the five `knowledge/` files. Then give your task. |
 | delegate / parallel delegates | Not available. Neo does the work itself, in order, one step at a time. |
 | cheaper model | Not available. Use the model you chose for the chat. |
 | find a skill / install a skill | Not available. Neo works from the knowledge it was given; if you paste a skill, it follows it. |

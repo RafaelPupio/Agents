@@ -29,7 +29,7 @@ it stays in charge for the rest of that session.
 | Claude Code | `/neo` |
 | Codex | `$neo` |
 | Hermes | `/neo` |
-| Anything else | paste `system-prompt.md` as the first message |
+| Anything else | paste `system-prompt.md` (below its `---`) into the instructions field, paste `adapters/generic.md` under it, attach the five `knowledge/` files |
 
 Project rules outrank Neo. Order: your direct instruction, then the project's
 own `CLAUDE.md` / `AGENTS.md`, then Neo.
@@ -52,18 +52,27 @@ nothing. Start a **new** session afterwards, then call Neo (table above).
 | Claude Code | `install.sh claude-code ~` | install-tested; behaviour scenarios run on the installed files; calling it with `/neo` not yet run |
 | Hermes | `install.sh hermes ~` | install-tested (files only); not run |
 | Codex | `install.sh codex ~` | untested (adapter written from documentation) |
+| Anything else | no install: paste `system-prompt.md` (below its `---`) into the instructions field, paste `adapters/generic.md` under it, attach the five `knowledge/` files | not applicable |
 
 A Hermes install into a single project prints one next step, `hermes skills trust`, which you run yourself; the installer never runs a harness command.
-| Anything else | no install: paste `adapters/generic.md` then `system-prompt.md` | not applicable |
 
 Statuses are updated only after the harness has actually been run.
 
 **What the installer writes.**
 - The skill, in `<SKILL_DIR>/neo/`: `SKILL.md` and a `references/` folder
   holding the prompt, the five knowledge files and the one adapter for that
-  harness. This folder is replaced on every run.
+  harness. This folder is replaced on every run. If a `<SKILL_DIR>/neo/`
+  already exists and is not Neo's (its `SKILL.md` lacks `name: neo`), the
+  installer refuses and changes nothing.
+- One line appended to the installed copy of the adapter,
+  `LIBRARY: <absolute path>`, so later sessions use the same library
+  whether or not `NEO_HOME` is set. The adapters in this repo are not
+  changed.
 - The library skeleton, at `$NEO_HOME` (default `~/.neo`): only files that are
   missing. It never overwrites a note you or Neo wrote.
+- `templates/project/` inside the library: the starting formats Neo seeds new
+  project notes from. Only missing files are copied; edit them to change how
+  new project notes start.
 - It edits no harness settings and no file you wrote. Codex additionally gets
   an `agents/openai.yaml` that stops it firing Neo from a matching prompt.
 
@@ -75,7 +84,10 @@ script removes it; delete it by hand if you want it gone.
 
 ## How it remembers
 
-Two stores, so isolation is physical rather than a label Neo has to honour.
+Two stores, separate on disk: the library is private to the machine, and a
+project's notes live inside that project. Neo's rule is never to open another
+project's notes. That is a rule the agent keeps — verified in a scenario run —
+not a sandbox: the files of a sibling project are still reachable.
 
 ```
 $NEO_HOME/  (default ~/.neo — private, per machine, outside any repo)
@@ -83,7 +95,8 @@ $NEO_HOME/  (default ~/.neo — private, per machine, outside any repo)
 ├── tools/         one note per tool: what it is for, when it pays, gotchas
 ├── techniques/    generalised lessons
 ├── sources/       what was distilled from repos you handed over
-└── skills.md      register: adopted, declined (with reason), pending
+├── skills.md      register: adopted, declined (with reason), pending
+└── templates/     project/ — starting formats for new project notes
 
 <project>/.neo/    (created when there is something worth keeping)
 ├── INDEX.md       one line per note
@@ -151,6 +164,8 @@ rule about marking what is unverified.
 
 The three-row table. Move an action between rows to loosen or tighten Neo:
 for example, move "adding a skill" to Free if you want to stop seeing cards.
+The table is the single place to edit: the prompt's "What you never do" rule
+and `knowledge/tooling.md` defer to whatever is in its Present-first tier.
 
 ### 3. Brainstorm threshold: `system-prompt.md`, "The loop" (the "Brainstorm threshold" paragraph) and `knowledge/engineering.md`, "1. Choosing the scale"
 
@@ -166,7 +181,17 @@ to change how Neo spends on sub-agents.
 ### 5. Memory locations: `$NEO_HOME` and `.neo/`
 
 Set `NEO_HOME` before running the installer to put the library somewhere
-else. The project folder name `.neo/` and the library layout are defined in
+else. The installer records that path as a `LIBRARY:` line in the installed
+adapter, so you do not have to keep `NEO_HOME` set afterwards. Neo uses
+`$NEO_HOME` if set, else the recorded `LIBRARY:` path, else `~/.neo`; if that
+folder is missing it says so and works without a library rather than creating
+one elsewhere. Re-run the installer after moving the library.
+
+To share a project's notes with everyone who clones it, remove the `.neo/`
+line from the repository's local exclude file (`git rev-parse --git-path
+info/exclude`) and commit the folder.
+
+The project folder name `.neo/` and the library layout are defined in
 `system-prompt.md`, "Memory" section, and `knowledge/memory.md`, "1. The
 shared library" and "2. Project notes". Change them there, in both files.
 
@@ -185,8 +210,10 @@ list in `install.sh`.
 ## Design notes
 
 **Two stores over one tagged store.** A tag is honoured only while the agent
-remembers to honour it. A project's notes living in that project's folder
-means another project's notes are simply not there.
+remembers to honour it. With the stores separate on disk, and a project's
+notes inside that project, nothing from another project is in front of Neo
+unless it goes looking — and its rule is never to look. That rule is kept by
+the agent, verified in a scenario run; it is not a sandbox.
 
 **Called by name, not always on.** Always-on was chosen first and reversed the
 same day: a global instruction is re-sent on every turn of every session, so

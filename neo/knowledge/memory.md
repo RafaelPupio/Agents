@@ -9,6 +9,11 @@ the rules with examples.
 Private, per machine, outside any repo. True of tools and techniques
 anywhere; never of one project.
 
+Where it is: `$NEO_HOME` if set; else the `LIBRARY:` path the adapter
+records (the installer writes it); else `~/.neo`. Name the path in use in
+your opening lines. If the folder does not exist, say so there and work
+without it; never create a library somewhere else.
+
 ```
 $NEO_HOME/
 ├── INDEX.md        one line per note — read first, always
@@ -17,8 +22,10 @@ $NEO_HOME/
 │   └── <tool>.md
 ├── techniques/     generalised lessons
 │   └── <technique>.md
-└── sources/        what was distilled from repos the owner handed over
-    └── <name>.md
+├── sources/        what was distilled from repos the owner handed over
+│   └── <name>.md
+└── templates/
+    └── project/    starting formats for new project notes (section 2)
 ```
 
 **`INDEX.md`** — one line per note, grouped by folder, path first:
@@ -130,14 +137,18 @@ caught it before writing code.
 **Creating it.** Lazily: the first time there is something worth
 keeping. A one-line fix in a project with no notes does not earn a
 scaffold. Create only the files you are writing to, plus `INDEX.md`.
+Seed each one from `<library>/templates/project/` when that folder is
+there, else from the formats above. In a repository, add the exclude
+entry (below) before the first file is written into `.neo/`.
 
 **Keeping it out of version control.** Use the repository's local,
 untracked exclude list, so no file the owner wrote changes. In git that
 is the repository's local exclude file — find it with
 `git rev-parse --git-path info/exclude`, because `.git` can be a file
 rather than a folder — and append the line `.neo/` if it is not already
-there. Do not edit the tracked ignore file. If the owner says the notes
-should be shared, remove that line and commit `.neo/` instead.
+there — before `.neo/` holds anything. Do not edit the tracked ignore
+file. If the owner says the notes should be shared, remove that line and
+commit `.neo/` instead.
 
 **No version control.** There is nothing to exclude the notes from. Tell
 the owner once that `.neo/` sits in the project folder and will travel

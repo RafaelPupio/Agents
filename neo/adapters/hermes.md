@@ -7,7 +7,7 @@ INVOKE: /neo
 
 | Capability | How it is done here |
 |---|---|
-| how Neo is called | Type `/neo` in the CLI or any messaging platform. Up to five skills can be chained in one message. |
+| how Neo is called | Type `/neo` in the CLI or any messaging platform. Up to five skills can be chained in one message. Unconfirmed: Hermes has no confirmed setting that limits a skill to invoke-by-name only, so "called by name" here rests on the skill description saying to use it only when the user calls Neo. |
 | delegate | The `delegate_task` tool with `goal` and a self-contained `context` (the child starts with a fresh conversation; only its final summary returns). Children inherit the parent's toolsets; they cannot use `clarify`, `memory`, `send_message`, or `cronjob`. |
 | parallel delegates | `delegate_task` with a `tasks` array, each with its own `goal` and `context`. Default cap 10 concurrent (`delegation.max_concurrent_children`); a larger batch errors. Depth is flat unless `max_spawn_depth` is raised. |
 | cheaper model | `delegation.model` (and optionally `delegation.provider`) in `~/.hermes/config.yaml`; the key exists in the local default config. It is global to all children: there is no per-task model argument. Empty means children inherit the parent's. Neo cannot choose per call, so it asks the user to set it once. |

@@ -132,9 +132,12 @@ git clone https://github.com/RafaelPupio/Agents
 ```
 
 Start a new session, then call it: `/neo` in Claude Code and Hermes, `$neo`
-in Codex. After that you simply talk to it. Claude Code is install-tested,
-with behaviour scenarios pending; Hermes and Codex are untested. Anything
-else: paste `neo/system-prompt.md` as the first message.
+in Codex. After that you simply talk to it. Claude Code: install-tested;
+behaviour scenarios run on the installed files; calling it with `/neo` not
+yet run. Hermes: install-tested (files only); not run. Codex: untested
+(adapter written from documentation). Anything else: paste
+`neo/system-prompt.md` (below its `---`) into the instructions field, paste
+`neo/adapters/generic.md` under it, attach the five `neo/knowledge/` files.
 [Full instructions →](neo/)
 
 ### What it does

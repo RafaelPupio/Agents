@@ -1,5 +1,6 @@
 .DS_Store
 .remember/
+.obsidian/
 tmp/
 logs/
 node_modules/
