@@ -4,14 +4,24 @@
 
 ## Open — 2026-11-10
 
-Build is complete. What remains:
+Build and scenario runs are complete. What remains is the owner's:
 
-1. Run the scenarios listed under "How it gets tested" in `design.md` on
-   Claude Code. Record each result in `log/decisions.md`. Any defect found
-   is fixed in `system-prompt.md` or a knowledge file, then reinstalled and
-   re-run.
-2. Update the README harness labels to what was actually run.
-3. The owner installs, pushes and tags `neo-v1.0`.
+1. Install for real: `./install.sh claude-code ~`, start a new session,
+   call `/neo`. This is the one thing the scenario runs could not cover —
+   they loaded the installed files directly because the command-line login
+   on the build machine had expired.
+2. Push the `neo` branch, merge, tag `neo-v1.0`.
 
-Verify: the installer test passes; the README levers each name a file and
-heading that exist.
+Worth doing next, each earned by a run recorded in `log/decisions.md`:
+
+- A task split across real sub-agents (scenario 3 ran solo).
+- Handing Neo a repository to learn from.
+- A project that already has its own notes convention.
+- Two observed weaknesses, neither yet changed in the prompt because no
+  re-run has earned the change: Neo showed its split after building when
+  asked to show it first; and asked to prepare for a need recurring across
+  projects, it wrote library notes but did not go looking for a skill to
+  card until pointed at one.
+
+Verify: `tests/install.test.sh` passes; the README levers each name a file
+and heading that exist.

@@ -25,7 +25,7 @@ branch switcher, which is backwards for a repo whose job is being found.
 `git subtree split --prefix=<agent>` promotes any folder to a standalone
 repo later with its history intact, so nothing is foreclosed.
 
-**Next action:** Neo's scenario testing, tracked in its own brain; then the owner tags `neo-v1.0`.
+**Next action:** see `neo/brain/status.md`; the owner then tags `neo-v1.0`.
 
 **Outstanding, outside this repo:** pin `Agents` on the GitHub profile (no
 API exists), set profile location.

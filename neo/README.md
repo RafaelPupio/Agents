@@ -49,9 +49,11 @@ nothing. Start a **new** session afterwards, then call Neo (table above).
 
 | Harness | Command | Status |
 |---|---|---|
-| Claude Code | `install.sh claude-code ~` | install-tested; behaviour scenarios pending |
-| Hermes | `install.sh hermes ~` | untested |
+| Claude Code | `install.sh claude-code ~` | install-tested; behaviour scenarios run on the installed files; calling it with `/neo` not yet run |
+| Hermes | `install.sh hermes ~` | install-tested (files only); not run |
 | Codex | `install.sh codex ~` | untested (adapter written from documentation) |
+
+A Hermes install into a single project prints one next step, `hermes skills trust`, which you run yourself; the installer never runs a harness command.
 | Anything else | no install: paste `adapters/generic.md` then `system-prompt.md` | not applicable |
 
 Statuses are updated only after the harness has actually been run.

@@ -4,18 +4,27 @@
 
 ## Now — 2026-11-10
 
-**Built on branch `neo`. Untagged. Not installed anywhere.** Scenario
-testing is pending.
+**Built on branch `neo`. Untagged. Not installed anywhere.**
 
 Parts in place: `system-prompt.md`, five knowledge files, four adapters
 (Claude Code, Codex, Hermes, generic), library and project templates,
 `install.sh` with its test, `skill/SKILL.md`, README.
 
-**Tested.** The installer test passes. No behaviour scenario from the design
-has been run yet. Harness labels in the README: Claude Code "install-tested;
-behaviour scenarios pending", Hermes "untested", Codex "untested (adapter
-written from documentation)".
+**Tested.**
+- Installer: its test suite passes (13 cases).
+- Behaviour: the seven design scenarios were run against two sample
+  projects sharing one scratch library. All seven pass; two carry a noted
+  weakness (see `log/decisions.md`). No prompt change was needed.
+- How they were run matters: each run was a fresh agent on a mid-tier
+  model, told to read the installed `SKILL.md` and follow it. That tests
+  the prompt and knowledge files as installed. It does **not** test calling
+  Neo by name through a harness, real sub-agent delegation, or a session
+  free of the machine's other instructions.
 
-**Next action:** run the eight design scenarios on Claude Code and record
-each result in `log/decisions.md`; update the README labels to match. Then
-the owner installs, pushes and tags `neo-v1.0`.
+**Not tested.** Calling `/neo` in a live Claude Code session. Delegating to
+sub-agents. Hermes beyond files landing in place. Codex at all (not
+installed where this was built). Repo ingestion. The existing-convention
+path. A harness that sandboxes library writes.
+
+**Next action:** the owner installs for real and calls Neo once in a live
+session, which closes the first gap; then push and tag `neo-v1.0`.

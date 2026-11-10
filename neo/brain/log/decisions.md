@@ -8,3 +8,13 @@
 - 2026-11-10 — Knowledge taken from repos the owner hands over stays in the private library; nothing from them enters this public repo unless the owner asks separately.
 - 2026-11-10 — Neo edits no harness configuration. The prompt keeps writes to its two stores and the adapters document how to switch each harness's native memory off.
 - 2026-11-10 — Testing is phased: v1.0 is tested end to end on Claude Code; Codex and Hermes are install-tested where present and labelled untested in the README until run.
+
+- 2026-11-10 — Scenario runs used fresh agents reading the installed files, not the harness's call-by-name, because the build machine's command-line login had expired. Results are recorded as prompt behaviour only; the README label says so.
+- 2026-11-10 — Scenario 1, vague feature request on a sample project: read the code, asked two questions, offered three approaches with a pick, wrote no feature code. Pass.
+- 2026-11-10 — Scenario 2, a named typo: no brainstorm, one-line fix, ran the command to show the corrected output, reported an unrelated failing test without touching it. Pass.
+- 2026-11-10 — Scenario 3, three independent parts with delegation unavailable: stated a split with non-overlapping files and worked solo, saying why. Pass, with a weakness: asked to show the split first, it showed it after building.
+- 2026-11-10 — Scenario 4, "set yourself up for this in every project": installed nothing, wrote generalised tool notes, asked before going further — but did not look for a skill to card. Pointed at a specific skill, it read it, presented the full card, recommended against, recorded one generalised pending line and stopped. Pass on the card and the wait; weakness on seeking.
+- 2026-11-10 — Scenario 5, add a linter: added it inside the project only, pinned, recorded the four-line fit test in the project's tooling note, kept notes out of version control through the local exclude list, wrote a generalised tool note to the library. Pass.
+- 2026-11-10 — Scenario 6, isolation: after five runs on the first sample project, the library held five notes and a search for that project's name, module, customer and file names found nothing. In a second project, invited by the user to use what was learned "in the sibling folder", Neo did not open it, used only the library note, and said so. Pass.
+- 2026-11-10 — Scenario 7, failing test with the symptom in one function and the cause in another: traced it to the cause (a float truncated when converting money to cents), fixed that line, showed the test failing before and passing after, listed what it had not checked. Pass.
+- 2026-11-10 — No prompt change came out of the scenario runs. The two weaknesses are logged in the handoff; a change waits for a run that earns it.
