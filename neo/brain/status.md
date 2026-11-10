@@ -15,10 +15,9 @@ Parts in place: `system-prompt.md`, five knowledge files, four adapters
   foreign `neo` skill folder and recording the library path in the
   installed adapter.
 - Behaviour: the seven design scenarios were run against two sample
-  projects sharing one scratch library. All seven pass; two carry a noted
-  weakness (see `log/decisions.md`). The final review added two prompt
-  changes aimed at those weaknesses (scenarios 3 and 4); their re-run is
-  pending.
+  projects sharing one scratch library. All seven pass. Two first showed a
+  weakness (scenarios 3 and 4); the prompt was changed for each and both
+  were re-run on the changed prompt and pass (see `log/decisions.md`).
 - How they were run matters: each run was a fresh agent on a mid-tier
   model, told to read the installed `SKILL.md` and follow it. That tests
   the prompt and knowledge files as installed. It does **not** test calling

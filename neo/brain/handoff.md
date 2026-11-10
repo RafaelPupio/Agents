@@ -17,11 +17,6 @@ Worth doing next, each earned by a run recorded in `log/decisions.md`:
 - A task split across real sub-agents (scenario 3 ran solo).
 - Handing Neo a repository to learn from.
 - A project that already has its own notes convention.
-- Two observed weaknesses, neither yet changed in the prompt because no
-  re-run has earned the change: Neo showed its split after building when
-  asked to show it first; and asked to prepare for a need recurring across
-  projects, it wrote library notes but did not go looking for a skill to
-  card until pointed at one.
 
 Verify: `tests/install.test.sh` passes; the README levers each name a file
 and heading that exist.
