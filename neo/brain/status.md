@@ -4,7 +4,7 @@
 
 ## Now — 2026-11-10
 
-**Built on branch `neo`. Untagged. Not installed anywhere (scenario runs used a scratch sandbox).**
+**Built on branch `neo`. Untagged. Installed for Claude Code on the build machine; `/neo` has not yet been called in a live session.**
 
 Parts in place: `system-prompt.md`, five knowledge files, four adapters
 (Claude Code, Codex, Hermes, generic), library and project templates,
