@@ -41,7 +41,7 @@ assert_fresh_install() { # assert_fresh_install <skill-dir-rel> <harness> <src>
   for f in system-prompt.md adapter.md briefing.md orchestration.md engineering.md tooling.md memory.md; do
     ok "references/$f" test -f "$d/references/$f" || return 1
   done
-  ok "adapter.md matches adapter" cmp -s "$d/references/adapter.md" "$src/adapters/$harness.md" || return 1
+  ok "adapter.md is the adapter plus its LIBRARY line" cmp -s <(sed '$d' "$d/references/adapter.md") "$src/adapters/$harness.md" || return 1
 }
 
 assert_library() {
@@ -193,10 +193,45 @@ case_project_templates_available() {
   done
 }
 
+case_library_path_recorded() {
+  sandbox
+  local before after lib d
+  before="$(cat "$SRC"/adapters/*.md | cksum)"
+  "$SRC/install.sh" claude-code "$TARGET" >/dev/null 2>&1 || return 1
+  after="$(cat "$SRC"/adapters/*.md | cksum)"
+  lib="$(cd "$NEO_HOME" && pwd)"
+  d="$TARGET/.claude/skills/neo/references/adapter.md"
+  ok "last line is LIBRARY: <NEO_HOME>" test "$(tail -n 1 "$d")" = "LIBRARY: $lib" || return 1
+  ok "rest is the shipped adapter" cmp -s <(sed '$d' "$d") "$SRC/adapters/claude-code.md" || return 1
+  ok "repo adapters unchanged" test "$before" = "$after" || return 1
+  ok "repo adapter has no LIBRARY line" test -z "$(grep -l '^LIBRARY:' "$SRC"/adapters/*.md)" || return 1
+}
+
+case_refuses_foreign_skill() {
+  sandbox
+  local d="$TARGET/.claude/skills/neo" rc=0
+  mkdir -p "$d"
+  printf -- '---\nname: other\n---\n' > "$d/SKILL.md"
+  cp "$d/SKILL.md" "$T/skill.before"
+  "$SRC/install.sh" claude-code "$TARGET" >/dev/null 2>"$T/err" || rc=$?
+  ok "exit 1" test "$rc" -eq 1 || return 1
+  ok "message names the folder" grep -qF "$d" "$T/err" || return 1
+  ok "foreign SKILL.md untouched" cmp -s "$d/SKILL.md" "$T/skill.before" || return 1
+  ok "nothing added beside it" test "$(ls -A "$d")" = "SKILL.md" || return 1
+  ok "library not created" test ! -e "$NEO_HOME" || return 1
+  rm "$d/SKILL.md"
+  printf 'notes\n' > "$d/other.txt"
+  rc=0
+  "$SRC/install.sh" claude-code "$TARGET" >/dev/null 2>&1 || rc=$?
+  ok "no SKILL.md: exit 1" test "$rc" -eq 1 || return 1
+  ok "no SKILL.md: folder untouched" test "$(ls -A "$d")" = "other.txt" || return 1
+}
+
 for c in fresh_install reinstall_refreshes library_seeded library_kept dry_run \
          missing_target unknown_harness path_with_space \
          project_install_leaves_ignore project_templates_available \
-         templates_kept no_gitkeep_in_library unset_home; do
+         templates_kept no_gitkeep_in_library unset_home \
+         library_path_recorded refuses_foreign_skill; do
   run_case "case_$c"
 done
 

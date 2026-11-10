@@ -5,6 +5,8 @@
 #   ./install.sh hermes --dry-run       show what would happen, write nothing
 # Harnesses: claude-code, codex, hermes. Target defaults to ~.
 # NEO_HOME is the library (default ~/.neo). Existing library files are never overwritten.
+# The installed adapter.md records the resolved library path as its last line.
+# An existing <SKILL_DIR>/neo that is not Neo's (no 'name: neo' in SKILL.md) is refused.
 # Exit: 0 ok, 1 bad input, 2 unknown harness.
 set -euo pipefail
 
@@ -46,7 +48,7 @@ fi
 case "$HARNESS" in
   claude-code|codex|hermes) ;;
   generic)
-    echo "error: generic is not installable; it is paste-in. Paste adapters/generic.md and system-prompt.md as the first message." >&2
+    echo "error: generic is not installable; it is paste-in. Paste system-prompt.md (below its ---) into the instructions field, paste adapters/generic.md under it, and attach the five knowledge/ files." >&2
     exit 2 ;;
   *)
     echo "error: unknown harness: $HARNESS (use claude-code, codex or hermes)" >&2
@@ -67,7 +69,12 @@ if [ ! -d "$TARGET" ]; then
 fi
 
 DEST="$TARGET/$SKILL_REL/neo"
-REFS="$DEST/references"
+
+# Replace only a folder that is Neo's own: refuse a foreign skill that shares the name.
+if { [ -e "$DEST" ] || [ -L "$DEST" ]; } && ! grep -qx 'name: neo' "$DEST/SKILL.md" 2>/dev/null; then
+  echo "error: $DEST exists and is not a Neo install (no 'name: neo' in its SKILL.md); nothing was changed" >&2
+  exit 1
+fi
 
 if [ "$DRY" -eq 1 ]; then
   echo "dry run: nothing will be written"
@@ -77,6 +84,11 @@ if [ "$DRY" -eq 1 ]; then
   exit 0
 fi
 
+# The library path this install uses, recorded in the installed adapter so later
+# sessions find the same library whether or not NEO_HOME is set.
+mkdir -p "$NEO_HOME"
+LIBRARY="$(cd "$NEO_HOME" && pwd)"
+
 # Skill: build beside the old install, then swap, so a failed copy leaves the old one intact.
 NEW="$DEST.new.$$"
 trap 'rm -rf "$NEW"' EXIT
@@ -84,6 +96,7 @@ mkdir -p "$NEW/references"
 cp "$SRC/skill/SKILL.md" "$NEW/"
 cp "$SRC/system-prompt.md" "$SRC"/knowledge/*.md "$NEW/references/"
 cp "$ADAPTER" "$NEW/references/adapter.md"
+printf 'LIBRARY: %s\n' "$LIBRARY" >> "$NEW/references/adapter.md"
 if [ "$HARNESS" = "codex" ]; then
   mkdir -p "$NEW/agents"
   printf 'policy:\n  allow_implicit_invocation: false\n' > "$NEW/agents/openai.yaml"
@@ -103,11 +116,11 @@ seed() { # seed <source dir> <dest dir>
     fi
   done
 }
-seed "$SRC/templates/library" "$NEO_HOME"
-seed "$SRC/templates/project" "$NEO_HOME/templates/project"
+seed "$SRC/templates/library" "$LIBRARY"
+seed "$SRC/templates/project" "$LIBRARY/templates/project"
 
 echo "Neo installed → $DEST"
-echo "Library        → $NEO_HOME"
+echo "Library        → $LIBRARY"
 if [ "$TARGET" = "$HOME_DIR" ]; then
   echo "Start a new session anywhere, then call Neo with: $INVOKE"
 else
