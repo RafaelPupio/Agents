@@ -4,13 +4,9 @@
 
 ## Open — 2026-11-10
 
-Build and scenario runs are complete. What remains is the owner's:
-
-1. Install for real: `./install.sh claude-code ~`, start a new session,
-   call `/neo`. This is the one thing the scenario runs could not cover —
-   they loaded the installed files directly because the command-line login
-   on the build machine had expired.
-2. Push the `neo` branch, merge, tag `neo-v1.0`.
+Build, scenario runs, a user-level install and one live `/neo` call are
+done; the branch is pushed and a pull request is open. What remains is the
+owner's: merge it and tag `neo-v1.0`.
 
 Worth doing next, each earned by a run recorded in `log/decisions.md`:
 

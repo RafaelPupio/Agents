@@ -49,7 +49,7 @@ nothing. Start a **new** session afterwards, then call Neo (table above).
 
 | Harness | Command | Status |
 |---|---|---|
-| Claude Code | `install.sh claude-code ~` | install-tested; behaviour scenarios run on the installed files; calling it with `/neo` not yet run |
+| Claude Code | `install.sh claude-code ~` | install-tested; behaviour scenarios run on the installed files; `/neo` loads in a live session and opens as designed |
 | Hermes | `install.sh hermes ~` | install-tested (files only); not run |
 | Codex | `install.sh codex ~` | untested (adapter written from documentation) |
 | Anything else | no install: paste `system-prompt.md` (below its `---`) into the instructions field, paste `adapters/generic.md` under it, attach the five `knowledge/` files | not applicable |
