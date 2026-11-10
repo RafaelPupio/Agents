@@ -9,7 +9,14 @@
 set -euo pipefail
 
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-NEO_HOME="${NEO_HOME:-$HOME/.neo}"
+HOME_DIR="${HOME:-}"
+if [ -z "${NEO_HOME:-}" ]; then
+  if [ -z "$HOME_DIR" ]; then
+    echo "error: HOME is not set; set HOME or NEO_HOME" >&2
+    exit 1
+  fi
+  NEO_HOME="$HOME_DIR/.neo"
+fi
 
 usage() { echo "usage: install.sh <claude-code|codex|hermes> [target] [--dry-run]" >&2; }
 
@@ -28,7 +35,13 @@ for arg in "$@"; do
       TARGET="$arg" ;;
   esac
 done
-TARGET="${TARGET:-$HOME}"
+if [ -z "$TARGET" ]; then
+  if [ -z "$HOME_DIR" ]; then
+    echo "error: HOME is not set; give a target directory" >&2
+    exit 1
+  fi
+  TARGET="$HOME_DIR"
+fi
 
 case "$HARNESS" in
   claude-code|codex|hermes) ;;
@@ -60,44 +73,46 @@ if [ "$DRY" -eq 1 ]; then
   echo "dry run: nothing will be written"
   echo "skill:   $DEST  (replaced wholesale)"
   echo "library: $NEO_HOME  (missing files only)"
-  echo "         $NEO_HOME/templates/project  (replaced)"
+  echo "         $NEO_HOME/templates/project  (missing files only)"
   exit 0
 fi
 
-# Skill: replace wholesale so removed source files do not linger.
-rm -rf "${DEST:?}"
-mkdir -p "$REFS"
-cp "$SRC/skill/SKILL.md" "$DEST/"
-cp "$SRC/system-prompt.md" "$SRC"/knowledge/*.md "$REFS/"
-cp "$ADAPTER" "$REFS/adapter.md"
-
+# Skill: build beside the old install, then swap, so a failed copy leaves the old one intact.
+NEW="$DEST.new.$$"
+trap 'rm -rf "$NEW"' EXIT
+mkdir -p "$NEW/references"
+cp "$SRC/skill/SKILL.md" "$NEW/"
+cp "$SRC/system-prompt.md" "$SRC"/knowledge/*.md "$NEW/references/"
+cp "$ADAPTER" "$NEW/references/adapter.md"
 if [ "$HARNESS" = "codex" ]; then
-  mkdir -p "$DEST/agents"
-  printf 'policy:\n  allow_implicit_invocation: false\n' > "$DEST/agents/openai.yaml"
+  mkdir -p "$NEW/agents"
+  printf 'policy:\n  allow_implicit_invocation: false\n' > "$NEW/agents/openai.yaml"
 fi
+rm -rf "${DEST:?}"
+mv "$NEW" "$DEST"
 
-# Library: copy only what is absent; never touch the owner's notes.
-mkdir -p "$NEO_HOME"
-( cd "$SRC/templates/library" && find . -mindepth 1 | sort ) | while IFS= read -r rel; do
-  if [ -d "$SRC/templates/library/$rel" ]; then
-    mkdir -p "$NEO_HOME/$rel"
-  elif [ ! -e "$NEO_HOME/$rel" ]; then
-    cp "$SRC/templates/library/$rel" "$NEO_HOME/$rel"
-  fi
-done
-
-# Project skeleton for Neo to copy when a project earns notes; shipped, so refreshed.
-rm -rf "$NEO_HOME/templates/project"
-mkdir -p "$NEO_HOME/templates/project"
-cp "$SRC"/templates/project/*.md "$NEO_HOME/templates/project/"
+# Library and project skeleton: copy only what is absent; never touch the owner's notes.
+seed() { # seed <source dir> <dest dir>
+  mkdir -p "$2"
+  ( cd "$1" && find . -mindepth 1 | sort ) | while IFS= read -r rel; do
+    case "$rel" in */.gitkeep) continue ;; esac
+    if [ -d "$1/$rel" ]; then
+      mkdir -p "$2/$rel"
+    elif [ ! -e "$2/$rel" ]; then
+      cp "$1/$rel" "$2/$rel"
+    fi
+  done
+}
+seed "$SRC/templates/library" "$NEO_HOME"
+seed "$SRC/templates/project" "$NEO_HOME/templates/project"
 
 echo "Neo installed → $DEST"
 echo "Library        → $NEO_HOME"
-if [ "$TARGET" = "$HOME" ]; then
+if [ "$TARGET" = "$HOME_DIR" ]; then
   echo "Start a new session anywhere, then call Neo with: $INVOKE"
 else
   echo "Start a new session in $TARGET, then call Neo with: $INVOKE"
 fi
-if [ "$HARNESS" = "hermes" ] && [ "$TARGET" != "$HOME" ]; then
+if [ "$HARNESS" = "hermes" ] && [ "$TARGET" != "$HOME_DIR" ]; then
   echo "Next step: project-level skills load only after you run 'hermes skills trust' in $TARGET"
 fi

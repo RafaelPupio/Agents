@@ -37,7 +37,7 @@ ok() { # ok <description> <command...>
 assert_fresh_install() { # assert_fresh_install <skill-dir-rel> <harness> <src>
   local rel="$1" harness="$2" src="$3" d f
   d="$TARGET/$rel/neo"
-  ok "SKILL.md" test -f "$d/SKILL.md" || return 1
+  ok "SKILL.md matches shipped skill" cmp -s "$d/SKILL.md" "$src/skill/SKILL.md" || return 1
   for f in system-prompt.md adapter.md briefing.md orchestration.md engineering.md tooling.md memory.md; do
     ok "references/$f" test -f "$d/references/$f" || return 1
   done
@@ -99,10 +99,12 @@ case_library_kept() {
 case_dry_run() {
   sandbox
   local out rc=0
+  ok "home empty before" test -z "$(ls -A "$HOME")" || return 1
   out="$("$SRC/install.sh" claude-code "$TARGET" --dry-run 2>&1)" || rc=$?
   ok "exit 0" test "$rc" -eq 0 || return 1
   ok "nothing in target" test -z "$(ls -A "$TARGET")" || return 1
   ok "no library" test ! -e "$NEO_HOME" || return 1
+  ok "sandbox HOME unchanged" test -z "$(ls -A "$HOME")" || return 1
   ok "plan names skill path" grep -qF "$TARGET/.claude/skills/neo" <<<"$out" || return 1
   ok "plan names library path" grep -qF "$NEO_HOME" <<<"$out" || return 1
 }
@@ -151,6 +153,33 @@ case_project_install_leaves_ignore() {
   ok "no .neo created in project" test ! -e "$TARGET/.neo" || return 1
 }
 
+case_templates_kept() {
+  sandbox
+  mkdir -p "$NEO_HOME/templates/project"
+  printf 'mine\n' > "$NEO_HOME/templates/project/project.md"
+  "$SRC/install.sh" claude-code "$TARGET" >/dev/null 2>&1 || return 1
+  ok "project.md untouched" test "$(cat "$NEO_HOME/templates/project/project.md")" = "mine" || return 1
+  ok "missing sibling created" test -f "$NEO_HOME/templates/project/journal.md" || return 1
+}
+
+case_no_gitkeep_in_library() {
+  sandbox
+  "$SRC/install.sh" claude-code "$TARGET" >/dev/null 2>&1 || return 1
+  ok "no .gitkeep" test -z "$(find "$NEO_HOME" -name .gitkeep)" || return 1
+  ok "tools/ exists" test -d "$NEO_HOME/tools" || return 1
+}
+
+case_unset_home() {
+  sandbox
+  local rc=0
+  env -u HOME -u NEO_HOME "$SRC/install.sh" claude-code "$TARGET" >/dev/null 2>"$T/err" || rc=$?
+  ok "exit 1" test "$rc" -eq 1 || return 1
+  ok "clear message" grep -q HOME "$T/err" || return 1
+  rc=0
+  env -u HOME NEO_HOME="$T/lib" "$SRC/install.sh" claude-code "$TARGET" >/dev/null 2>&1 || rc=$?
+  ok "explicit NEO_HOME+target works" test "$rc" -eq 0 || return 1
+}
+
 case_project_templates_available() {
   sandbox
   "$SRC/install.sh" claude-code "$TARGET" >/dev/null 2>&1 || return 1
@@ -166,7 +195,8 @@ case_project_templates_available() {
 
 for c in fresh_install reinstall_refreshes library_seeded library_kept dry_run \
          missing_target unknown_harness path_with_space \
-         project_install_leaves_ignore project_templates_available; do
+         project_install_leaves_ignore project_templates_available \
+         templates_kept no_gitkeep_in_library unset_home; do
   run_case "case_$c"
 done
 
