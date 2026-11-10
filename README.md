@@ -117,6 +117,12 @@ brainstorms before it builds, writes briefs a sub-agent with no other context
 can execute, splits work across sub-agents only when that is cheaper, and
 proves work is done by running the check rather than saying "should work".
 
+**And a technical lead when the work is a product.** For a build that spans
+layers or ends in a deploy, it settles the architecture, writes the
+contracts between layers first, staffs a team of sub-agents by layer,
+integrates their work itself and takes it through a release plan with a
+rollback.
+
 It also remembers. Two stores, so projects share what was learned about a
 tool but never each other's information: a private library per machine for
 tool and technique knowledge, and a notes folder inside each project.
@@ -137,7 +143,7 @@ behaviour scenarios run on the installed files; `/neo` loads in a live
 session and opens as designed. Hermes: install-tested (files only); not run. Codex: untested
 (adapter written from documentation). Anything else: paste
 `neo/system-prompt.md` (below its `---`) into the instructions field, paste
-`neo/adapters/generic.md` under it, attach the five `neo/knowledge/` files.
+`neo/adapters/generic.md` under it, attach the six `neo/knowledge/` files.
 [Full instructions →](neo/)
 
 ### What it does
@@ -146,12 +152,14 @@ session and opens as designed. Hermes: install-tested (files only); not run. Cod
 |---|---|
 | **Thinks first** | Offering approaches before code on anything bigger than a small change |
 | **Staffs the work** | One self-contained brief per sub-agent, non-overlapping files, cheapest capable model |
+| **Leads a build** | Contracts before code, one thin slice through every layer, then layers in parallel, then one whole-system check |
 | **Seeks tools** | Adding to the current project on its own; showing a card before adding any skill |
 | **Learns** | Writing generalised lessons to the library, project facts only to that project |
 
 Hand it a repository and it distils the ideas into your private library
-instead of copying the code. Deleting data, force-pushing, publishing and
-spending are confirmed every time.
+instead of copying the code. Deleting data, force-pushing, publishing,
+spending and deploying to production are confirmed every time; a preview or
+staging target you have named for a project it deploys to on its own.
 
 ---
 

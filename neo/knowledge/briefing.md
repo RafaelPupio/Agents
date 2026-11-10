@@ -15,6 +15,7 @@ Constraints:   <patterns to follow, versions, rules>
                or Hard-stop comes back as a request. No writes to the
                library, the project notes or the environment's memory.
                No adding dependencies: ask, and I add them.
+               No deploying, to any target.
 Done when:     <an observable check: a command and the output that counts>
 Ruled out:     <approaches already rejected, and why>
 ```

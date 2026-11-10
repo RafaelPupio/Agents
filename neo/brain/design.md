@@ -302,3 +302,16 @@ Run Neo on scenarios and record each result in `brain/log/decisions.md`:
 Hermes adapters are written from their current documentation and
 install-tested on whichever of them is present on the build machine; any
 harness not run is labelled "untested" in the README until it has been.
+
+## Addendum — 2026-11-10: product build scale
+
+Added after v1 was built, at the owner's request ("also a CTO that
+orchestrates agents and creates dev teams for full-stack development and
+deploys"). Neo's loop gains a top scale for work that spans layers or ends
+in a deploy; at that scale Neo is the technical lead. The method is
+`knowledge/delivery.md`. The autonomy table changes in one place: deploying
+to a preview or staging target the owner has named for the project is Free;
+every other deploy stays a hard stop **(call)**. Scenario 9: a small
+multi-layer build on a sample project — contracts written before layers,
+work split by layer with one owner per path, the lead integrates, and Neo
+stops before a production deploy with the release stated.

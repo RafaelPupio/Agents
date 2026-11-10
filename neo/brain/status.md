@@ -6,7 +6,7 @@
 
 **Built on branch `neo`. Untagged. Installed for Claude Code on the build machine.**
 
-Parts in place: `system-prompt.md`, five knowledge files, four adapters
+Parts in place: `system-prompt.md`, six knowledge files, four adapters
 (Claude Code, Codex, Hermes, generic), library and project templates,
 `install.sh` with its test, `skill/SKILL.md`, README.
 
@@ -28,8 +28,13 @@ Parts in place: `system-prompt.md`, five knowledge files, four adapters
   (the project's own notes convention, an empty library at the recorded
   path) and opened as designed. The call carried a question, not a task.
 
+- Product build (added after v1): one scenario, a small full-stack build
+  run solo — contracts first, whole-system check, release plan, stop
+  before the production deploy. Pass, with one weakness logged.
+
 **Not tested.** A full task run through a live `/neo` call. Delegating to
-sub-agents. Hermes beyond files landing in place. Codex at all (not
+sub-agents, including a real team by layer. Any actual deploy, to any
+target. Hermes beyond files landing in place. Codex at all (not
 installed where this was built). Repo ingestion. The existing-convention
 path. A harness that sandboxes library writes.
 

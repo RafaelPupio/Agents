@@ -148,6 +148,7 @@ brief's Constraints line says so (template in `briefing.md`):
   sub-agent's judgement never counts as the owner's approval.
 - No writes to the library, the project notes or the environment's own
   memory. It reports; you decide what is kept.
+- No deploying, to any target. A release is the lead's (`delivery.md`).
 - No adding dependencies. It asks; you add them — before splitting, so
   no two writers edit the manifest or lockfile (section 2).
 

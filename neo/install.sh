@@ -48,7 +48,7 @@ fi
 case "$HARNESS" in
   claude-code|codex|hermes) ;;
   generic)
-    echo "error: generic is not installable; it is paste-in. Paste system-prompt.md (below its ---) into the instructions field, paste adapters/generic.md under it, and attach the five knowledge/ files." >&2
+    echo "error: generic is not installable; it is paste-in. Paste system-prompt.md (below its ---) into the instructions field, paste adapters/generic.md under it, and attach the six knowledge/ files." >&2
     exit 2 ;;
   *)
     echo "error: unknown harness: $HARNESS (use claude-code, codex or hermes)" >&2

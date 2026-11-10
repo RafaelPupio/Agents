@@ -38,7 +38,7 @@ assert_fresh_install() { # assert_fresh_install <skill-dir-rel> <harness> <src>
   local rel="$1" harness="$2" src="$3" d f
   d="$TARGET/$rel/neo"
   ok "SKILL.md matches shipped skill" cmp -s "$d/SKILL.md" "$src/skill/SKILL.md" || return 1
-  for f in system-prompt.md adapter.md briefing.md orchestration.md engineering.md tooling.md memory.md; do
+  for f in system-prompt.md adapter.md briefing.md orchestration.md engineering.md tooling.md memory.md delivery.md; do
     ok "references/$f" test -f "$d/references/$f" || return 1
   done
   ok "adapter.md is the adapter plus its LIBRARY line" cmp -s <(sed '$d' "$d/references/adapter.md") "$src/adapters/$harness.md" || return 1

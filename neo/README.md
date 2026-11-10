@@ -6,6 +6,13 @@ sub-agent can execute, splits work across sub-agents only when that is
 cheaper, looks for tools that make a job faster, proves work is done by
 running the check, and remembers what it learns.
 
+It is also the technical lead when the work is a product. For a build that
+spans layers of a system or ends in a deploy, it settles the architecture,
+writes the contracts between layers before any layer is built, staffs a
+team of sub-agents by layer, integrates their work itself, and takes it
+through a release plan with a rollback. `knowledge/delivery.md` holds the
+method.
+
 One source, several harnesses: the same behaviour and the same memory in
 Claude Code, Codex, Hermes, or pasted into any chat.
 
@@ -29,7 +36,7 @@ it stays in charge for the rest of that session.
 | Claude Code | `/neo` |
 | Codex | `$neo` |
 | Hermes | `/neo` |
-| Anything else | paste `system-prompt.md` (below its `---`) into the instructions field, paste `adapters/generic.md` under it, attach the five `knowledge/` files |
+| Anything else | paste `system-prompt.md` (below its `---`) into the instructions field, paste `adapters/generic.md` under it, attach the six `knowledge/` files |
 
 Project rules outrank Neo. Order: your direct instruction, then the project's
 own `CLAUDE.md` / `AGENTS.md`, then Neo.
@@ -49,10 +56,10 @@ nothing. Start a **new** session afterwards, then call Neo (table above).
 
 | Harness | Command | Status |
 |---|---|---|
-| Claude Code | `install.sh claude-code ~` | install-tested; behaviour scenarios run on the installed files; `/neo` loads in a live session and opens as designed |
+| Claude Code | `install.sh claude-code ~` | install-tested; behaviour scenarios run on the installed files; `/neo` loads in a live session and opens as designed; leading a build run once, solo, with no real deploy |
 | Hermes | `install.sh hermes ~` | install-tested (files only); not run |
 | Codex | `install.sh codex ~` | untested (adapter written from documentation) |
-| Anything else | no install: paste `system-prompt.md` (below its `---`) into the instructions field, paste `adapters/generic.md` under it, attach the five `knowledge/` files | not applicable |
+| Anything else | no install: paste `system-prompt.md` (below its `---`) into the instructions field, paste `adapters/generic.md` under it, attach the six `knowledge/` files | not applicable |
 
 A Hermes install into a single project prints one next step, `hermes skills trust`, which you run yourself; the installer never runs a harness command.
 
@@ -60,7 +67,7 @@ Statuses are updated only after the harness has actually been run.
 
 **What the installer writes.**
 - The skill, in `<SKILL_DIR>/neo/`: `SKILL.md` and a `references/` folder
-  holding the prompt, the five knowledge files and the one adapter for that
+  holding the prompt, the six knowledge files and the one adapter for that
   harness. This folder is replaced on every run. If a `<SKILL_DIR>/neo/`
   already exists and is not Neo's (its `SKILL.md` lacks `name: neo`), the
   installer refuses and changes nothing.
@@ -143,9 +150,9 @@ project is Neo's call; what persists across projects is yours.
 
 | Tier | What | Rule |
 |---|---|---|
-| **Free** | Use installed tools, search for tools, spawn sub-agents, define a role for the task, add a tool to the current project | Passes the fit test; announced in one line; recorded in the project's tooling note |
+| **Free** | Use installed tools, search for tools, spawn sub-agents, define a role for the task, add a tool to the current project, deploy to a preview or staging target you have named for that project | Passes the fit test; announced in one line; recorded in the project's tooling note |
 | **Present first** | Adding a skill, anything installed machine-wide, anything that costs money or needs a credential | Neo shows a short card and waits; declined items are not proposed again |
-| **Hard stop** | Deleting data, rewriting history, force-push, publishing, deploying, sending messages, spending | Confirmed every time, whatever was approved before |
+| **Hard stop** | Deleting data, rewriting history, force-push, publishing, deploying to production or to a target you have not named, the first deploy to any target, sending messages, spending | Confirmed every time, whatever was approved before |
 
 ---
 

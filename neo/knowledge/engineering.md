@@ -13,6 +13,7 @@ Decide first; say which scale you picked if it is not obvious.
 | Small change | All eight, compressed. |
 | Investigation — a question to answer, no code to change | 1 Recall, 2 Understand, the investigation under step 5's root-cause rule, 6 Prove (the evidence for the answer), 8 Learn. No approaches for the owner to pick. A change the answer leads to is a new task at its own scale. |
 | Feature, refactor, anything larger | All eight, in full. |
+| Product build — a new system, or work across several layers where each layer is enough work to deserve its own owner | All eight, run as the lead, in the phases of `delivery.md`. Open it before step 3. A feature touching two layers lightly is a feature; a task that merely ends in a deploy keeps its own scale, with the deploy rules applied. |
 
 **Small** means all four hold: touches one or two files · adds no
 runtime dependency · changes no public interface, data schema or stored
