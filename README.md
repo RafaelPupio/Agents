@@ -184,7 +184,7 @@ Neo adds `adapters/` (one file per harness), `templates/` (empty memory
 skeletons) and `tests/` (the installer test) to that layout.
 
 Each versions independently — `ecoprompt-v1.0`, `lease-reviewer-v1.0`, and
-`neo-v1.0` once it is tagged — so you can pull one agent at a known version without tracking the others.
+`neo-v1.0` — so you can pull one agent at a known version without tracking the others.
 
 **Portable.** No platform-specific syntax. The same files work as a skill, a
 Project, a Custom GPT, or anything else that accepts instructions and

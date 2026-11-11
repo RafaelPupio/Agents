@@ -2,11 +2,10 @@
 
 *Written when a session ends mid-task. Carries intent, not just facts.*
 
-## Open — 2026-11-10
+## Open — 2026-11-11
 
-Build, scenario runs, a user-level install and one live `/neo` call are
-done; the branch is pushed and a pull request is open. What remains is the
-owner's: merge it and tag `neo-v1.0`.
+Released as `neo-v1.0`: merged to `main` and tagged. Nothing is open
+mid-task.
 
 Worth doing next, each earned by a run recorded in `log/decisions.md`:
 

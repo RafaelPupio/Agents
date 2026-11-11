@@ -4,7 +4,7 @@
 
 ## Now — 2026-11-11
 
-**Built on branch `neo`. Untagged. Installed for Claude Code on the build machine.**
+**Released as `neo-v1.0` (merged to `main`). Installed for Claude Code on the build machine.**
 
 Parts in place: `system-prompt.md`, six knowledge files, four adapters
 (Claude Code, Codex, Hermes, generic), library and project templates,
@@ -43,5 +43,5 @@ target. Hermes beyond files landing in place. Codex at all (not
 installed where this was built). Repo ingestion. The existing-convention
 path. A harness that sandboxes library writes.
 
-**Next action:** merge the open pull request and tag `neo-v1.0`. The first
-real task given to a live Neo is worth recording in `log/decisions.md`.
+**Next action:** give a live Neo a first real task and record it in
+`log/decisions.md`; then a run with real sub-agents.
