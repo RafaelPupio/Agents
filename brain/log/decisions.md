@@ -7,3 +7,5 @@ published. Agent decisions live in that agent's own `brain/log/`.*
 - 2026-09-01 — Public, MIT. Purpose is showcasing evolution, so knowledge files are generalised and carry nothing personal.
 - 2026-09-01 — Persona is deliberately blunt. A padding agent cannot credibly teach concision.
 - 2026-09-01 — Agent refuses to draft when the user is still choosing between ideas. A confident brief for an unchosen idea reads as progress and gets built on, which is the costliest possible failure.
+- 2026-11-10 — Agent 3 is neo, a full agent. The standard layout is extended for it with `adapters/` (one file per harness, since harness wording is barred from the prompt and knowledge files), `templates/` and `tests/`. It is called by name, not always on: always-on was considered and reversed the same day because of its per-turn cost.
+- 2026-11-11 — neo shipped as `neo-v1.0` by merging its branch into `main`; it versions independently of the other agents.

@@ -14,5 +14,6 @@ anything about that agent.
 |---|---|
 | [ecoprompt/brain/](../ecoprompt/brain/INDEX.md) | Anything about EcoPrompt |
 | [lease-reviewer/brain/](../lease-reviewer/brain/INDEX.md) | Anything about LeaseReviewer |
+| [neo/brain/](../neo/brain/INDEX.md) | Anything about Neo |
 
 Public repo. Nothing personal in any of these files.
