@@ -5,8 +5,8 @@ framework, no dependencies, no lock-in.
 
 Each agent installs as a **Claude Code skill**, or pastes into a **Claude
 Project** or **Custom GPT**, from one source file. Each lives in its own
-repository; this page is the index. The agent repositories are private
-for now.
+repository; this page is the index. Neo is public; the other agent
+repositories are private for now.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![No dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)

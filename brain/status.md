@@ -12,16 +12,15 @@ split out with its history, listed here by a README section.
 |---|---|---|---|
 | EcoPrompt | `agent-ecoprompt` | full agent | `v1.0` |
 | LeaseReviewer | `agent-lease-reviewer` | showcase | `v1.0` |
-| Neo | `agent-neo` | full agent | `v1.0` |
+| Neo | `agent-neo` (public) | full agent | `v1.0` |
 
 The old `<agent>-v1.0` tags stay in this repo's history as the record of
 where each agent was when it moved.
 
-**Visitor-facing gap:** the agent repositories are private, so the links
-on the public README do not open for visitors. Making one public is
-`gh repo edit RafaelPupio/agent-<name> --visibility public
---accept-visibility-change-consequences`, after removing its
-`brain/rafael.md`.
+**Visitor-facing gap:** `agent-ecoprompt` and `agent-lease-reviewer` are
+private, so their links on the public README do not open for visitors.
+Making one public is `gh repo edit RafaelPupio/agent-<name> --visibility
+public --accept-visibility-change-consequences`.
 
 **Next action:** none here; each agent's own status holds its next step.
 

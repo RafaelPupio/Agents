@@ -50,7 +50,7 @@ cannot be published. The README's opening lines say which.
 **This repo is public — nothing personal, ever.** No home paths, machine
 names, other project names, client work or keys. Check before every
 commit. Agent repos are kept to the same standard so any of them can be
-published, except `brain/rafael.md`, which is removed first.
+published. `brain/rafael.md` holds writing conventions only; keep it so.
 
 **Generalised content only. Portable Markdown** in every prompt and
 knowledge file.
