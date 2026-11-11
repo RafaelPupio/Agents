@@ -11,7 +11,7 @@ Working on an agent means opening that agent's repository, not this one.
 
 | | |
 |---|---|
-| Repository | `RafaelPupio/agent-<name>`, private unless the owner says otherwise |
+| Repository | `RafaelPupio/agent-<name>`, public unless the owner says otherwise |
 | Folder | `agent-<name>`, beside this repo's folder — never inside it |
 | Tags | `vX.Y` in the agent's own repo |
 | Index | One section in this `README.md` linking to it |
@@ -38,8 +38,9 @@ cannot be published. The README's opening lines say which.
 1. Propose the name, the visibility and the folder, and get a yes —
    never create a repository silently.
 2. Create `agent-<name>` beside this folder with the layout above,
-   `git init`, then `gh repo create RafaelPupio/agent-<name> --private
-   --source=. --remote=origin --push`.
+   `git init`, then `gh repo create RafaelPupio/agent-<name> --public
+   --source=. --remote=origin --push` — after the personal-content check
+   below.
 3. Write `system-prompt.md` first — it is the product.
 4. Give its README named **customisation levers**, never "adapt as needed".
 5. Add its section to this `README.md`, and one line to this repo's
@@ -49,8 +50,8 @@ cannot be published. The README's opening lines say which.
 
 **This repo is public — nothing personal, ever.** No home paths, machine
 names, other project names, client work or keys. Check before every
-commit. Agent repos are kept to the same standard so any of them can be
-published. `brain/rafael.md` holds writing conventions only; keep it so.
+commit, and before an agent repo's first push. Agent repos are public too.
+`brain/rafael.md` holds writing conventions only; keep it so.
 
 **Generalised content only. Portable Markdown** in every prompt and
 knowledge file.

@@ -13,3 +13,4 @@ published. Agent decisions live in that agent's own `brain/log/`.*
 - 2026-11-11 — `agent-neo` made public by the owner; the other two agent repositories stay private.
 - 2026-11-11 — `agent-ecoprompt` made public by the owner; `agent-lease-reviewer` stays private.
 - 2026-11-11 — `agent-lease-reviewer` made public by the owner; all three agent repositories are now public.
+- 2026-11-11 — New agent repositories are public by default (the owner's call); private only when the owner says so, as for a showcase whose real build stays private.
