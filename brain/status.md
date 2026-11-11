@@ -18,8 +18,6 @@ The old `<agent>-v1.0` tags stay in this repo's history as the record of
 where each agent was when it moved.
 
 All three agent repositories are public.
-Making one public is `gh repo edit RafaelPupio/agent-<name> --visibility
-public --accept-visibility-change-consequences`.
 
 **Next action:** none here; each agent's own status holds its next step.
 
