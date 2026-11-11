@@ -11,3 +11,4 @@ published. Agent decisions live in that agent's own `brain/log/`.*
 - 2026-11-11 — neo shipped as `neo-v1.0` by merging its branch into `main`; it versions independently of the other agents.
 - 2026-11-11 — Each agent becomes its own repository, `agent-<name>`, split out with its history; this repo becomes the public index only, holding no agent. Supersedes the 2026-09-01 one-repo decision, at the owner's request. The owner chose private agent repositories, so the index links do not open for visitors until one is made public. The rule covers every future agent (`CLAUDE.md`, "Adding an agent").
 - 2026-11-11 — `agent-neo` made public by the owner; the other two agent repositories stay private.
+- 2026-11-11 — `agent-ecoprompt` made public by the owner; `agent-lease-reviewer` stays private.
