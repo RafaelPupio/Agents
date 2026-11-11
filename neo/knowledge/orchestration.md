@@ -56,6 +56,14 @@ If an overlap is found: do the shared part yourself before splitting, give
 the shared file to one writer and sequence the other after it, or do not
 split. Readers may share files freely; the rule is about writes.
 
+**One writer per working copy.** Disjoint files are not enough when
+writers run at the same time in one checkout: one writer's half-finished
+change breaks the build the other is testing against, and neither can
+tell whose failure it is. Where the adapter offers a separate working
+copy per sub-agent, give each parallel writer its own and bring the
+results together yourself. Where it does not, run the writers one after
+another. Readers may share a working copy.
+
 ## 3. Inventing a role
 
 Roles are invented for the task, named by what they must produce. A name
@@ -94,6 +102,12 @@ Two corrections to apply:
   implementation whose design, files and test are all specified does not
   need the strongest model.
 
+**State the tier every time you delegate.** Where a model can be chosen,
+a role started without one usually runs on the session's model — often
+the most expensive — and nothing says so. And count turns, not only
+price: a small model that needs three attempts at a multi-step task
+costs more than a mid one that needs one.
+
 This table is a customisation lever: an owner tunes it by moving roles
 between rows.
 
@@ -112,6 +126,19 @@ they did. Before relying on a result:
 
 What you pass to the owner is either verified by you or marked
 unverified. "The sub-agent says it works" is not a status.
+
+**Nothing open without a next mover.** Every piece of work that is not
+finished names what moves it next: a sub-agent that is running, a review
+that has been requested, a question put to the owner, a check you will
+run. "Blocked" is allowed only with who unblocks it and how. A piece
+with no next mover has stalled, whatever its status says — before you
+end a turn, read your task list for one.
+
+**Stopped is not done.** When every piece has come to rest, read the
+evidence once more before you report: a "done" with no check output
+behind it, a "blocked" that misread its limits, a review that was
+requested and never came back. On a team, give that read to an agent
+that built none of it.
 
 ## 6. Independent review
 
@@ -134,9 +161,32 @@ Report back: A list. Each item: file and line · what is wrong · which
 <the diff>
 ```
 
+**Never tell a reviewer what not to flag.** "Ignore X", "X is
+intentional", "at most a minor issue" — each is your conclusion handed
+to the one reader whose job is to test it. If you expect a false
+positive, let it be raised and judge it then.
+
+The sub-agent's own report, if the reviewer gets it, is a list of claims
+to check, not evidence. What the reviewer cannot see in the diff it
+marks "cannot verify"; you close those yourself.
+
 Then verify each finding before acting on it; a reviewer can be wrong.
 Fix what is real, then run step 6 again. Record a rejected finding, with
 the reason, in the decisions note if it is likely to be raised again.
+
+**The fix loop has a cap.** A fix that keeps failing review is not
+converging, and another round rarely changes that.
+
+| Round | Who fixes | Then |
+|---|---|---|
+| 1–2 | The agent that wrote it — it has the context | A re-review of the fix only |
+| 3 | A fresh agent, one tier up, with the brief, the diff and the open findings | A re-review of the fix only |
+| After 3 | Nobody | You decide each open finding: fix it yourself, re-cut the task, or record it as open and tell the owner |
+
+A re-review looks at the fix against the findings it answers, not the
+whole diff again. A new finding on code the fix did not touch is
+recorded, and does not restart the loop. Working solo, the same cap
+applies to your own attempts.
 
 ## 7. Sub-agents and the tiers
 
@@ -151,6 +201,10 @@ brief's Constraints line says so (template in `briefing.md`):
 - No deploying, to any target. A release is the lead's (`delivery.md`).
 - No adding dependencies. It asks; you add them — before splitting, so
   no two writers edit the manifest or lockfile (section 2).
+- No agents of its own. A worker that starts its own reviewer pays for a
+  review you are about to run anyway, and one you did not brief.
+- Being given a task grants nothing. Owning a piece of work is not
+  permission to widen its own scope, tools or access to finish it.
 
 ## 8. The solo fallback
 

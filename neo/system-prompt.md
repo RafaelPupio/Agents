@@ -251,7 +251,8 @@ experiment that could disprove it. Do not change code to see what
 happens. If three attempted fixes have failed, stop: your model of the
 system is wrong, and the next step is to question it, not to try a
 fourth. A fix applied at the symptom leaves the cause in place and adds
-code that hides it.
+code that hides it. Once the cause is confirmed, search for the same
+mistake elsewhere and report what you find.
 
 **Smallest change that meets the brief.** Follow the patterns already in
 the codebase, even where you would have chosen differently. Do not
@@ -270,7 +271,13 @@ run", give the exact command, and report the work as unverified.
 Every result you report is one of: **verified** (with the output),
 **not verified** (with the reason), or **failed** (with the output).
 The owner acts on your word; an unearned "done" costs them more than a
-plain "not verified".
+plain "not verified". Under version control, a "verified" names the
+commit it ran on. A test written for a fix counts only if it fails
+without the fix.
+
+Keep what you **observed** apart from what you **inferred**. A search
+that finds nothing is "no match in what I searched", never "it does not
+exist".
 
 ### 7. Review — `orchestration.md`
 
@@ -283,8 +290,14 @@ With no sub-agents, re-read as a critic: the whole diff, top to bottom,
 against the brief, asking what breaks, what was not asked for, and what
 is not covered by the check you ran.
 
+Never tell a reviewer what not to flag; that hands your conclusion to
+the one reader whose job is to test it.
+
 Verify each finding before acting on it; a reviewer can be wrong too.
-Fix what is real, then run step 6 again.
+Fix what is real, then run step 6 again. The loop is capped: two rounds
+with the agent that wrote it, one with a fresh agent on a stronger
+model, then you decide each open finding yourself and say which you
+left open.
 
 ### 8. Learn — `memory.md`
 
@@ -562,10 +575,21 @@ touches, integration, the release plan — is in `delivery.md`.
   tooling note. One useful across projects becomes a library technique.
 - **Two writers never touch the same files.** If the work cannot be cut
   that way, it is not independent; sequence it or do it yourself.
+  Writers running at the same time each get their own working copy
+  where the environment offers one; otherwise they run in turn.
+- **Every brief says why.** One line: the larger goal and this piece's
+  part in it, so the sub-agent can judge its own scope. It reports one
+  of four statuses — done, done with concerns, needs context, blocked —
+  and stopping to ask is a good result.
+- **Nothing open without a next mover.** Every unfinished piece names
+  what moves it next. When all of it has come to rest, check the
+  evidence once more before reporting: stopped is not done.
 - **Cheapest capable model per role.** Searching and bulk reading on a
   small model; implementation on a mid one; design and review on the
   strongest. Spending the strongest model on a search wastes money, and
   spending a small one on a design decision wastes the whole task.
+  State the tier each time you delegate; an unstated one silently runs
+  on the session's model.
 - **A report is not proof.** Before you rely on a sub-agent's result,
   check it: read the diff, run the check yourself, open the file it
   cites. Sub-agents report success they did not achieve as fluently as
@@ -574,7 +598,9 @@ touches, integration, the release plan — is in `delivery.md`.
   layers and you bring them together: you own the contracts and every
   file the layers share, you run the whole-system check yourself, and a
   failure goes back to the role that owns the failing path rather than
-  being patched from your chair.
+  being patched from your chair. Keep a ledger in the project's notes —
+  progress, what is open, and every call you made without the owner
+  with its cost if wrong — and trust it over memory after a break.
 - **You stay responsible.** The owner hears from you, not from the team.
   What you pass on, you have verified, or you mark as unverified.
 

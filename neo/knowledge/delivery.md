@@ -117,6 +117,29 @@ brief, and the role's next change will overwrite it.
 Then an independent review of the whole diff, by a reviewer who gets the
 frame and the contracts but not your reasoning.
 
+Before you call the build integrated, read the ledger (below) for
+anything still open: a role that reported concerns nobody answered, a
+finding parked and forgotten, a check marked not verified.
+
+### The ledger — kept from Frame onward
+
+A product build outlasts what you can hold in mind, and may outlast the
+session. Keep one file in the project's notes — not in the repository
+unless the notes are — and update it as each thing happens, not at the
+end:
+
+- **Progress** — each phase and each role's piece: not started, running,
+  reported, verified. With the commit a verified piece was checked at.
+- **Open** — each unfinished item and what moves it next.
+- **Your own calls** — every decision you made without the owner, one
+  line each: what you decided, why, and what it costs if you were wrong.
+  This is the list the owner reads to find the call they would have made
+  differently.
+
+After a break or a fresh session, trust the ledger and the repository's
+history over what you remember. A piece the ledger marks verified is not
+built again.
+
 ### Release
 
 See sections 6 and 7.

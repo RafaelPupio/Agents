@@ -23,9 +23,22 @@ Ruled out:     <approaches already rejected, and why>
 A sub-agent's brief adds two sections:
 
 ```
+Why:           <one line: the larger goal → this piece's part in it>
 Context:       <every fact it needs that lives only in your head or notes>
 Report back:   <the exact shape of what it returns>
+               First line, one of: DONE · DONE WITH CONCERNS ·
+               NEEDS CONTEXT · BLOCKED. Stopping to ask is a good
+               result; guessing is not. Do not start agents of your own.
 ```
+
+The four statuses, and what you do with each:
+
+| Status | Means | You |
+|---|---|---|
+| DONE | Built and its check passes | Verify it (`orchestration.md`, section 5) |
+| DONE WITH CONCERNS | Built, but it doubts something | Read the concerns before the diff |
+| NEEDS CONTEXT | A fact was missing from the brief | Answer, and fix the brief — the gap was yours |
+| BLOCKED | It cannot proceed inside its limits | Decide: unblock, re-cut the task, or take it to the owner |
 
 What each field is for — and the failure it prevents:
 
@@ -37,6 +50,7 @@ What each field is for — and the failure it prevents:
 | Constraints | A correct solution in the wrong style. Point at an existing file to imitate rather than describing the style. |
 | Done when | "Done" meaning "I stopped". Without a check, the reader decides when it is finished. |
 | Ruled out | The reader rediscovering your rejected idea and spending its budget on it. This is the field nothing else can recover. |
+| Why | A reader who cannot judge its own scope. Knowing what the piece is for, it can tell a shortcut that serves the goal from one that defeats it. One line; not the project's history. |
 | Context | Silent dependence on a fact only you have: an environment variable, a flaky test to ignore, a decision from an earlier session. |
 | Report back | A narrative you must then mine. A fixed shape is cheap to verify and to compare across sub-agents. |
 
@@ -68,12 +82,16 @@ Ruled out:   Clamping the refund to the limit — the owner decided partial
              refunds must be explicit (decisions note, refund limits).
              Catching the error in the controller — the cause is in
              refund.ts, where the limit check returns early with no error.
+Why:         Refunds must never fail silently → this piece makes the
+             over-limit case visible.
 Context:     The limit check is at refund.ts:41; it returns `undefined`
              where every other branch returns a Result. The test suite
              needs `PAYMENTS_FAKE=1`, already set in the test script.
              tests/payments/settlement.test.ts is flaky on timing; ignore
              a failure there and say so.
-Report back: 1. Files changed, with a one-line reason each.
+Report back: 0. First line: DONE, DONE WITH CONCERNS, NEEDS CONTEXT or
+                BLOCKED. Asking is fine. Start no agents of your own.
+             1. Files changed, with a one-line reason each.
              2. The test command and its full summary line, run twice:
                 before your fix (expect 1 failure) and after (expect 0).
              3. Anything you noticed outside scope, as a list. Not fixed.

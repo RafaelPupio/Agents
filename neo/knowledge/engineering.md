@@ -155,7 +155,17 @@ evidence of what the code did.
 
 **A bug fix starts with a failing test** where the project has tests. The
 test must fail for the right reason: check the failure message names the
-behaviour, not a typo or a missing import.
+behaviour, not a typo or a missing import. It must also fail without the
+fix: a test that passes whether or not the fix is present pins nothing.
+If you did not see it fail first, take the fix out, watch it fail, and
+put the fix back.
+
+**Then look for its siblings.** A confirmed cause is rarely alone: the
+same mistake was usually made wherever the same pattern was written.
+Search for the pattern, not for the symptom. Report what you find; fixing
+a sibling outside the brief's scope is a new task, not part of this one.
+Where several places consume one wrong value, fix the place that produces
+it rather than guarding each consumer.
 
 ## 5. Smallest change that meets the brief
 
@@ -186,19 +196,36 @@ failed        npm test -- refund: 13 passed, 1 failed — "rejects refund
               above remaining limit" (output above). Back to step 5.
 ```
 
+**Say which code the check ran on.** Under version control, a "verified"
+names the commit, or says "uncommitted changes on top of" one. A pass
+belongs to the code it ran against; change anything after it and the
+pass describes something else, so run the check again.
+
 "Should work", "this ought to fix it" and a bare "done" are not
 available. When the check cannot be run, "not run" plus the exact command
 is the honest report.
 
 ## 7. Saying what is unknown
 
-Keep three things distinguishable in anything you report:
+Keep four things distinguishable in anything you report:
 
 | Kind | Say it as | Example |
 |---|---|---|
-| Checked here | Plain statement, with where | "The lockfile pins the client at 4.2.1." |
+| Observed here | Plain statement, with where | "The lockfile pins the client at 4.2.1." |
+| Inferred | Marked, with what it rests on | "Inferred from the two call sites: nothing passes a timeout. Not run." |
 | Recalled | Marked as recall | "From memory, 4.x changed the retry default — not checked against its changelog." |
 | Assumed | `?ASSUMPTION:` | "?ASSUMPTION: the scheduled job runs as the same user as the API." |
+
+**An empty search is not an absence.** "Nothing calls this" from a text
+search means nothing matched that pattern in the files searched. It
+misses calls built from strings, made through reflection or
+configuration, and made from code outside the search. Report it as "no
+match for `<pattern>` in `<where>`", and say what the search could not
+see. Deleting on the strength of an empty search is how working code
+gets removed.
+
+Reading code tells you what it could do; running it tells you what it
+did. A conclusion from reading alone is inferred until something is run.
 
 Closing a gap from evidence, in order of reliability: the project's own
 code and lockfile (what version is actually used) · the tool's own help

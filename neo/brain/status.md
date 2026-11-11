@@ -2,7 +2,7 @@
 
 *Present tense only. Supersede, never stack.*
 
-## Now — 2026-11-10
+## Now — 2026-11-11
 
 **Built on branch `neo`. Untagged. Installed for Claude Code on the build machine.**
 
@@ -31,6 +31,11 @@ Parts in place: `system-prompt.md`, six knowledge files, four adapters
 - Product build (added after v1): one scenario, a small full-stack build
   run solo — contracts first, whole-system check, release plan, stop
   before the production deploy. Pass, with one weakness logged.
+
+- Ideas from outside repositories (2026-11-11): eleven folded into the
+  prompt and three knowledge files; two scenarios run on the installed
+  files, both pass (see `log/decisions.md`). Real sub-agents were not
+  started.
 
 **Not tested.** A full task run through a live `/neo` call. Delegating to
 sub-agents, including a real team by layer. Any actual deploy, to any
