@@ -5,8 +5,7 @@ framework, no dependencies, no lock-in.
 
 Each agent installs as a **Claude Code skill**, or pastes into a **Claude
 Project** or **Custom GPT**, from one source file. Each lives in its own
-repository; this page is the index. Neo and EcoPrompt are public;
-LeaseReviewer's showcase repository is private for now.
+public repository; this page is the index.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![No dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
