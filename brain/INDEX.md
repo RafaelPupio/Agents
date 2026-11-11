@@ -1,4 +1,4 @@
-# Brain — Agents (container)
+# Brain — Agents (index)
 
 Portfolio level only. **Each agent has its own brain** — go there for
 anything about that agent.
@@ -10,10 +10,7 @@ anything about that agent.
 | [log/decisions.md](log/decisions.md) | A container decision: what this repo is, what gets added. |
 | [handoff.md](handoff.md) | Picking up container-level work. |
 
-| Agent brains | |
-|---|---|
-| [ecoprompt/brain/](../ecoprompt/brain/INDEX.md) | Anything about EcoPrompt |
-| [lease-reviewer/brain/](../lease-reviewer/brain/INDEX.md) | Anything about LeaseReviewer |
-| [neo/brain/](../neo/brain/INDEX.md) | Anything about Neo |
+Each agent's brain is in its own repository: `agent-ecoprompt`,
+`agent-lease-reviewer`, `agent-neo`.
 
 Public repo. Nothing personal in any of these files.

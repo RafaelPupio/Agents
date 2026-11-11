@@ -1,57 +1,61 @@
-# Agents — container rules
+# Agents — index rules
 
-A public portfolio of agent projects. **Each agent folder is its own
-project** — its own `CLAUDE.md`, its own `brain/`, its own release tags.
-This file governs the container, not the agents. Read the agent's own
-`CLAUDE.md` before working inside it.
+The public front page of an agent portfolio. **It holds no agent.** Each
+agent lives in its own repository, `agent-<name>`, with its own
+`CLAUDE.md`, `brain/`, history and tags. This repo holds the index
+`README.md`, the licence, and the portfolio's own `brain/`.
 
-## Structure
+Working on an agent means opening that agent's repository, not this one.
+
+## Every agent is its own repo — including future ones
+
+| | |
+|---|---|
+| Repository | `RafaelPupio/agent-<name>`, private unless the owner says otherwise |
+| Folder | `agent-<name>`, beside this repo's folder — never inside it |
+| Tags | `vX.Y` in the agent's own repo |
+| Index | One section in this `README.md` linking to it |
+
+An agent's layout, inside its repo:
 
 ```
-<agent-name>/
-├── CLAUDE.md          that agent's rules; AGENTS.md symlinks to it
-├── brain/             its INDEX, status, handoff, log/decisions
-├── README.md          purpose · install · customisation levers
-├── system-prompt.md   the product, single source of truth
-├── knowledge/         reference files the agent reasons from
-├── skill/SKILL.md     Claude Code packaging; references, never copies
-└── install.sh         installs the skill
+CLAUDE.md          its rules; AGENTS.md symlinks to it
+brain/             INDEX, status, handoff, log/decisions, rafael.md
+README.md          purpose · install · customisation levers
+system-prompt.md   the product, single source of truth
+knowledge/         reference files the agent reasons from
+skill/SKILL.md     Claude Code packaging; references, never copies
+install.sh         installs the skill
+LICENSE            MIT
 ```
 
-**Two kinds of entry.** A **full agent** ships all of the above and installs.
-A **showcase** ships `CLAUDE.md`, `brain/` and `README.md` only — the idea,
-the shape, an anonymised example — when the real build cannot be published.
-State which in the README's opening lines.
-
-## Where things are recorded
-
-Agent work is recorded in **that agent's** `brain/`. The root `brain/` holds
-portfolio decisions only: what this repo is, what gets added, how it is
-published. `rafael.md` stays at the root and is shared — never duplicated
-into an agent.
-
-Never record an agent's work at the root.
-
-## Non-negotiables — every folder
-
-**Public repo — nothing personal, ever.** No home paths, no machine names,
-no other project names, no client work, no keys. Check before every commit.
-
-**Generalised content only.** Principles, not one repo's layout.
-
-**Portable Markdown.** No platform-specific syntax in `system-prompt.md` or
-`knowledge/`.
+**Two kinds.** A **full agent** ships all of the above. A **showcase**
+ships `CLAUDE.md`, `brain/` and `README.md` only, when the real build
+cannot be published. The README's opening lines say which.
 
 ## Adding an agent
 
-1. Create the folder with the structure above, including its own
-   `CLAUDE.md`, `AGENTS.md` symlink and `brain/`.
-2. Write `system-prompt.md` first — it is the product.
-3. Give the README named **customisation levers**, never "adapt as needed".
-4. Add a row to the root `README.md` index.
-5. Record the new agent in the **root** decisions log; everything after that
-   goes in its own brain.
+1. Propose the name, the visibility and the folder, and get a yes —
+   never create a repository silently.
+2. Create `agent-<name>` beside this folder with the layout above,
+   `git init`, then `gh repo create RafaelPupio/agent-<name> --private
+   --source=. --remote=origin --push`.
+3. Write `system-prompt.md` first — it is the product.
+4. Give its README named **customisation levers**, never "adapt as needed".
+5. Add its section to this `README.md`, and one line to this repo's
+   `brain/log/decisions.md`. Everything after that goes in its own brain.
 
-## Releases
+## Non-negotiables
 
-Each agent versions independently: `<agent>-vX.Y` annotated tags.
+**This repo is public — nothing personal, ever.** No home paths, machine
+names, other project names, client work or keys. Check before every
+commit. Agent repos are kept to the same standard so any of them can be
+published, except `brain/rafael.md`, which is removed first.
+
+**Generalised content only. Portable Markdown** in every prompt and
+knowledge file.
+
+## Where things are recorded
+
+Agent work goes in that agent's repo. This repo's `brain/` records only
+portfolio decisions: what is listed, how it is published.
