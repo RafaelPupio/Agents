@@ -21,5 +21,5 @@ All three agent repositories are public.
 
 **Next action:** none here; each agent's own status holds its next step.
 
-**Outstanding, outside this repo:** pin `Agents` on the GitHub profile (no
-API exists), set profile location.
+**Outstanding, outside this repo:** set profile location. (`Agents` is
+pinned on the GitHub profile.)
