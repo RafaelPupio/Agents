@@ -4,7 +4,9 @@ Reusable AI agents you drop into your own projects. Plain Markdown — no
 framework, no dependencies, no lock-in.
 
 Each agent installs as a **Claude Code skill**, or pastes into a **Claude
-Project** or **Custom GPT**, from one source file.
+Project** or **Custom GPT**, from one source file. Each lives in its own
+repository; this page is the index. The agent repositories are private
+for now.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![No dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
@@ -56,8 +58,8 @@ context for the rest of the session.
 ### Install
 
 ```bash
-git clone https://github.com/RafaelPupio/Agents
-./Agents/ecoprompt/install.sh /path/to/your/project
+git clone https://github.com/RafaelPupio/agent-ecoprompt
+./agent-ecoprompt/install.sh /path/to/your/project
 ```
 
 Start a new Claude Code session in that project, then:
@@ -66,9 +68,9 @@ Start a new Claude Code session in that project, then:
 /ecoprompt
 ```
 
-Not a Claude Code user? Paste `ecoprompt/system-prompt.md` into a Claude
-Project or Custom GPT and upload the three files in `ecoprompt/knowledge/`.
-[Full instructions →](ecoprompt/)
+Not a Claude Code user? Paste `system-prompt.md` into a Claude Project or
+Custom GPT and upload the three files in `knowledge/`.
+[agent-ecoprompt →](https://github.com/RafaelPupio/agent-ecoprompt)
 
 ### What it does
 
@@ -106,7 +108,7 @@ emails the landlord two months ahead of every readjustment and renewal.
 beside signed contracts and tenant data, so they stay private. Knowing what
 not to publish is part of the work. The showcase page carries the design,
 the reasoning, and an anonymised example review.
-[See the showcase →](lease-reviewer/)
+[See the showcase →](https://github.com/RafaelPupio/agent-lease-reviewer)
 
 ---
 
@@ -133,8 +135,8 @@ instruction file, so sessions that do not call it cost nothing.
 ### Install
 
 ```bash
-git clone https://github.com/RafaelPupio/Agents
-./Agents/neo/install.sh claude-code ~
+git clone https://github.com/RafaelPupio/agent-neo
+./agent-neo/install.sh claude-code ~
 ```
 
 Start a new session, then call it: `/neo` in Claude Code and Hermes, `$neo`
@@ -142,9 +144,9 @@ in Codex. After that you simply talk to it. Claude Code: install-tested;
 behaviour scenarios run on the installed files; `/neo` loads in a live
 session and opens as designed. Hermes: install-tested (files only); not run. Codex: untested
 (adapter written from documentation). Anything else: paste
-`neo/system-prompt.md` (below its `---`) into the instructions field, paste
-`neo/adapters/generic.md` under it, attach the six `neo/knowledge/` files.
-[Full instructions →](neo/)
+`system-prompt.md` (below its `---`) into the instructions field, paste
+`adapters/generic.md` under it, attach the six `knowledge/` files.
+[agent-neo →](https://github.com/RafaelPupio/agent-neo)
 
 ### What it does
 
@@ -165,12 +167,11 @@ staging target you have named for a project it deploys to on its own.
 
 ## How these are built
 
-Each agent folder is **its own project** — its own rules, its own decision
-log, its own version line. One repo so there is one clone and one place to
-look, but nothing inside is a subfolder of anything else.
+Each agent is **its own repository** — `agent-<name>`, with its own rules,
+decision log and version tags. This repo is only the index.
 
 ```
-<agent-name>/
+agent-<name>/
 ├── CLAUDE.md          that agent's rules
 ├── brain/             its status, decisions, handoff
 ├── README.md          purpose · install · customisation levers
@@ -181,10 +182,8 @@ look, but nothing inside is a subfolder of anything else.
 ```
 
 Neo adds `adapters/` (one file per harness), `templates/` (empty memory
-skeletons) and `tests/` (the installer test) to that layout.
-
-Each versions independently — `ecoprompt-v1.0`, `lease-reviewer-v1.0`, and
-`neo-v1.0` — so you can pull one agent at a known version without tracking the others.
+skeletons) and `tests/` (the installer test). Each tags its own releases,
+starting at `v1.0`.
 
 **Portable.** No platform-specific syntax. The same files work as a skill, a
 Project, a Custom GPT, or anything else that accepts instructions and
@@ -202,9 +201,9 @@ with the next repo.
 Every agent documents named levers you edit — a specific section, table, or
 file — never "adapt the prompt to your needs". For EcoPrompt: persona,
 output template, target tools, and the cost model.
-[See the levers →](ecoprompt/#customising-it) For Neo: persona, autonomy
+[See the levers →](https://github.com/RafaelPupio/agent-ecoprompt#customising-it) For Neo: persona, autonomy
 tiers, brainstorm threshold, model routing, memory locations, and harnesses.
-[See the levers →](neo/#customising-it)
+[See the levers →](https://github.com/RafaelPupio/agent-neo#customising-it)
 
 ## Licence
 

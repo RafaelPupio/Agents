@@ -6,5 +6,5 @@ logs/
 node_modules/
 .env
 
-# generated skill install (source of truth is ecoprompt/)
+# generated skill installs
 .claude/skills/

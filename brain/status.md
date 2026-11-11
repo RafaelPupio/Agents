@@ -1,31 +1,29 @@
-# Status — Agents (container)
+# Status — Agents (index)
 
 *Present tense only. Supersede, never stack.*
 
 ## Now — 2026-11-11
 
-Public portfolio of agent projects, live at `github.com/RafaelPupio/Agents`.
-MIT. One repo, one clone, one front page — **each agent inside is its own
-project** with its own `CLAUDE.md`, `brain/` and version line.
+Public index of an agent portfolio at `github.com/RafaelPupio/Agents`. It
+holds no agent: since 2026-11-11 each agent is its own private repository,
+split out with its history, listed here by a README section.
 
-| Agent | Kind | Version | State |
+| Agent | Repository | Kind | Version |
 |---|---|---|---|
-| ecoprompt | full agent | `ecoprompt-v1.0` | shipped, both branches tested |
-| lease-reviewer | showcase | `lease-reviewer-v1.0` | complete as a showcase |
-| neo | full agent | `neo-v1.0` | shipped; Claude Code tested, Codex and Hermes untested |
+| EcoPrompt | `agent-ecoprompt` | full agent | `v1.0` |
+| LeaseReviewer | `agent-lease-reviewer` | showcase | `v1.0` |
+| Neo | `agent-neo` | full agent | `v1.0` |
 
-For any agent's state, read its own `brain/status.md`. This file tracks
-the container only.
+The old `<agent>-v1.0` tags stay in this repo's history as the record of
+where each agent was when it moved.
 
-**Structure rationale.** Separate repos were considered and rejected:
-EcoPrompt is six files and LeaseReviewer is one, neither earns a repo yet,
-and splitting would break the published URL and both install commands.
-Orphan branches were considered and rejected: they hide agents behind a
-branch switcher, which is backwards for a repo whose job is being found.
-`git subtree split --prefix=<agent>` promotes any folder to a standalone
-repo later with its history intact, so nothing is foreclosed.
+**Visitor-facing gap:** the agent repositories are private, so the links
+on the public README do not open for visitors. Making one public is
+`gh repo edit RafaelPupio/agent-<name> --visibility public
+--accept-visibility-change-consequences`, after removing its
+`brain/rafael.md`.
 
-**Next action:** none at the container level; each agent's own status holds its next step.
+**Next action:** none here; each agent's own status holds its next step.
 
 **Outstanding, outside this repo:** pin `Agents` on the GitHub profile (no
 API exists), set profile location.
